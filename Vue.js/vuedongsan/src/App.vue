@@ -1,16 +1,16 @@
 <template>
 
   <!-- 모달창 -->
-  <Modal :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니" :modalToggle="modalToggle"/>
+  <Modal @closeModal="모달창열렸니=false" :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니" />
 
   <div class="menu">
     <a href="" v-for="(메뉴, i) in 메뉴들" :key="i">{{ 메뉴 + " / " + i}}</a>
   </div>
   
-  <DiscBanner />
+  <DiscBanner :이름="오브젝트.name" :나이="오브젝트.age"/>
 
-  <Card :원룸들="원룸들" :detailView="detailView" :modalToggle="modalToggle"/>
-
+  <Card @openModal="open" :원룸="원룸들[i]" v-for="(작명, i) in 원룸들" :key="i" />
+ 
 </template>
 
 <script>
@@ -23,6 +23,7 @@ export default {
   name: 'App',
   data() {
     return {
+      오브젝트: {name: 'kim', age: 20},
       누른거: 0,
       원룸들: data,
       모달창열렸니: false,
@@ -32,17 +33,9 @@ export default {
     }
   },
   methods: {
-    
-    detailView(i) {
-      this.modalToggle();
-      this.누른거 = i
-    },
-    modalToggle() {
-      if (this.모달창열렸니) {
-        this.모달창열렸니 = false;
-      } else {
-        this.모달창열렸니 = true;
-      }
+    open(n) {
+      this.모달창열렸니 = true;
+      this.누른거 = n;
     }
   },
   components: {

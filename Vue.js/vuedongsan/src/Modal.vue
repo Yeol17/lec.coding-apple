@@ -6,7 +6,7 @@
       <p>{{ 원룸들[누른거].content }}</p>
       <p>{{ 원룸들[누른거].price }}</p>
       <DiscBanner></DiscBanner>
-      <button type="button" @click="modalToggle">닫기</button>
+      <button type="button" @click="$emit('closeModal')">닫기</button>
     </div>
   </div>
 </template>
@@ -16,7 +16,7 @@
 export default {
   name: "Modal",
   props: {
-    원룸들: Array,
+    원룸들: Object,
     누른거: Number,
     모달창열렸니: Boolean,
     modalToggle: Object

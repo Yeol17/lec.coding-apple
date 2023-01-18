@@ -1,8 +1,8 @@
 <template>
-  <div v-for="(v, i) in 원룸들" :key="i">
-    <img :src="v.image" alt="" class="room-img" @click="detailView(i)">
-    <h4 class="red">{{ v.title }} 원룸</h4>
-    <p>{{ v.price }} 원</p>
+  <div>
+    <img :src="원룸.image" class="room-img">
+    <h4 @click="send" class="red">{{ 원룸.title }}</h4>
+    <p>{{ 원룸.price }} 원</p>
   </div>
 </template>
 
@@ -10,9 +10,12 @@
 export default {
   name: 'Card',
   props: {
-    원룸들: Array,
-    detailView: Object,
-    modalToggle: Object
+    원룸: Object,
+  },
+  methods: {
+    send() {
+      this.$emit('openModal', this.원룸.id)
+    }
   }
 }
 </script>
