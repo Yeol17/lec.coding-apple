@@ -15,7 +15,7 @@
 
 <script>
 import data from './assets/oneroom'
-import DiscBanner from '@/Discount'
+import DiscBanner  from '@/Discount'
 import Modal from '@/Modal'
 import Card from '@/Card'
 
