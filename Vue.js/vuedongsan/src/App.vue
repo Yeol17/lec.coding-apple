@@ -1,7 +1,12 @@
 <template>
 
   <!-- 모달창 -->
-  <Modal @closeModal="모달창열렸니=false" :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니" />
+  <!-- <div class="start" :class="{end: 모달창열렸니}">
+    <Modal @closeModal="모달창열렸니=false" :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니" />
+  </div> -->
+  <Transition name="fade">
+    <Modal @closeModal="모달창열렸니=false" :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니" />
+  </Transition>
 
   <div class="menu">
     <a href="" v-for="(메뉴, i) in 메뉴들" :key="i">{{ 메뉴 + " / " + i}}</a>
@@ -54,6 +59,32 @@ body {
 
 div {
   box-sizing: border-box;
+}
+
+.start {
+  opacity: 0;
+  transition: all .6s; 
+}
+.end {
+  opacity: 1
+}
+.fade-enter-from{
+  opacity: 0;
+}
+.fade-enter-active{
+  transition: all .4s;
+}
+.fade-enter-to{
+  opacity: 1;
+}
+.fade-leave-from{
+  opacity: 1;
+}
+.fade-leave-active{
+  transition: all .4s;
+}
+.fade-leave-to{
+  opacity: 0;
 }
 
 .discount {
