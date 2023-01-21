@@ -1,7 +1,7 @@
 <template>
   <div class="black-bg" v-if="(모달창열렸니 === true)">
     <div class="white-bg">
-      <DiscBanner></DiscBanner>
+      <DiscBanner :disRate="disRate"></DiscBanner>
       <img :src="원룸들[누른거].image" class="img-size" alt="">
       <h4>{{ 원룸들[누른거].title }}</h4>
       <p>{{ 원룸들[누른거].content }}</p>
@@ -19,14 +19,13 @@ export default {
   name: "Modal",
   data() {
     return {
-      month: 1,
+      month: 3,
     }
   },
   watch: {
     month(a) {
       if (a >= 13) {
         alert('13개월 미만만 가능합니다.');
-        alert(typeof(a));
         return this.month = 1;
       }
       if (isNaN(a)) {
@@ -39,7 +38,14 @@ export default {
     원룸들: Object,
     누른거: Number,
     모달창열렸니: Boolean,
-    modalToggle: Object
+    modalToggle: Object,
+    disRate: Number
+  },
+  beforeUpdate() {
+    if (this.month < 2) {
+      this.month = 3
+      alert('2개월 미만은 불가능합니다.');
+    }
   },
   components: {
     DiscBanner: DiscBanner
