@@ -12,10 +12,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link to="home" class="nav-link active">홈</router-link>
+            <router-link to="/home" class="nav-link active">홈</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="list" class="nav-link">리스트</router-link>
+            <router-link to="/list" class="nav-link">리스트</router-link>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Pricing</a>
