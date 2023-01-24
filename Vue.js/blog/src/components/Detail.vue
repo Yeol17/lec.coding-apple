@@ -1,8 +1,8 @@
 <template lang="">
   <div>
-    <h3>{{ 블로그글[0].title }}</h3>
-    <p>{{ 블로그글[0].date }}</p>
-    <p>{{ 블로그글[0].content }}</p>
+    <h3>{{ 블로그글[$route.params.id].title }}</h3>
+    <p>{{ 블로그글[$route.params.id].date }}</p>
+    <p>{{ 블로그글[$route.params.id].content }}</p>
   </div>
 </template>
 
