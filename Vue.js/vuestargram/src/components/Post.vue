@@ -1,10 +1,10 @@
 <template lang="ko">
   <div class="post">
     <div class="post-header">
-      <div class="profile"></div>
+      <div class="profile" :style="{ backgroundImage: `url(${Data.userImage})`}"></div>
       <span class="profile-name">{{Data.name}}</span>
     </div>
-    <div class="post-body"></div>
+    <div class="post-body" :style="{ backgroundImage: `url(${Data.postImage})`}"></div>
     <div class="post-content">
       <p>{{Data.likes}} Likes</p>
       <p><strong>{{Data.content}}</strong></p>

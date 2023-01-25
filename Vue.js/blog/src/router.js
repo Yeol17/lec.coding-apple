@@ -1,9 +1,10 @@
 import { createWebHistory, createRouter } from "vue-router";
-import List from './components/List.vue'
-import Home from './components/Home.vue'
-import Detail from './components/Detail'
-import Author from './components/Author'
-import Comment from './components/Comment'
+import List from "./components/List.vue";
+import Home from "./components/Home.vue";
+import Detail from "./components/Detail";
+import Author from "./components/Author";
+import Comment from "./components/Comment";
+import ErrPage from "./components/Err";
 
 const routes = [
   {
@@ -24,15 +25,18 @@ const routes = [
     children: [
       {
         path: "author",
-        component: Author.vue
+        component: Author.vue,
       },
       {
         path: "comment",
-        component: Comment.vue
+        component: Comment.vue,
       },
-    ]
+    ],
   },
-
+  {
+    path: "/asdasd",
+    component: ErrPage,
+  },
 ];
 
 const router = createRouter({
@@ -40,4 +44,4 @@ const router = createRouter({
   routes,
 });
 
-export default router; 
+export default router;
