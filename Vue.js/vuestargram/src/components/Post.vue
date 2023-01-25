@@ -1,14 +1,14 @@
 <template lang="ko">
   <div class="post">
     <div class="post-header">
-      <div class="profile" :style="{ backgroundImage: `url(${Data.userImage})`}"></div>
-      <span class="profile-name">{{Data.name}}</span>
+      <div class="profile" :style="{ backgroundImage: `url(${data.userImage})`}"></div>
+      <span class="profile-name">{{data.name}}</span>
     </div>
-    <div class="post-body" :style="{ backgroundImage: `url(${Data.postImage})`}"></div>
+    <div class="post-body" :style="{ backgroundImage: `url(${data.postImage})`}"></div>
     <div class="post-content">
-      <p>{{Data.likes}} Likes</p>
-      <p><strong>{{Data.content}}</strong></p>
-      <p class="date">{{Data.date}}</p>
+      <p>{{data.likes}} Likes</p>
+      <p><strong>{{data.content}}</strong></p>
+      <p class="date">{{data.date}}</p>
     </div>
 </div> 
 </template>
@@ -17,7 +17,7 @@
 export default {
   name: 'Post',
   props: {
-    Data: Object
+    data: Object
   }
 }
 </script>
