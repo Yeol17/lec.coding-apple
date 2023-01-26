@@ -9,7 +9,7 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :data="data" />
+  <Container :data="data" :step="step"/>
 
   <button @click="more">더보기</button>
 
@@ -19,6 +19,16 @@
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
+
+
+
+  <!-- <div v-if="tab == 0">내용0</div>
+  <div v-if="tab == 1">내용1</div>
+  <div v-if="tab == 2">내용2</div>
+  <button @click="tabView(0)">버튼0</button>
+  <button @click="tabView(1)">버튼1</button>
+  <button @click="tabView(2)">버튼2</button> -->
+
 </template>
 
 <script>
@@ -31,7 +41,8 @@ export default {
   data() {
     return {
       data: Data,
-      cnt: 0
+      cnt: 0,
+      step: 2,
     }
   },
   components: {
@@ -44,6 +55,9 @@ export default {
           this.data.push(결과.data);
           this.cnt++
         })
+    },
+    tabView(i) {
+      this.tab = i 
     }
   }
 }
