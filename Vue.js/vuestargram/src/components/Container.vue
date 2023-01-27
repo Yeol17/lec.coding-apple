@@ -2,11 +2,12 @@
   <div>
     <div v-if="step == 0">
       <Post :data="data[i]" v-for="(item, i) in data" :key="i" />
+      <button @click="more">더보기</button>
     </div>
 
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
-      <div class="upload-image" :style="{backgroundImage: `url(${url})`}"></div>
+      <div class="upload-image" :style="{ backgroundImage: `url(${img})` }"></div>
       <div class="filters">
         <div class="filter-1"></div>
         <div class="filter-1"></div>
@@ -18,9 +19,9 @@
 
     <!-- 글작성페이지 -->
     <div v-if="step == 2">
-      <div class="upload-image" :style="{backgroundImage: `url(${url})`}"></div>
+      <div class="upload-image" :style="{ backgroundImage: `url(${img})` }"></div>
       <div class="write">
-        <textarea class="write-box">write!</textarea>
+        <textarea @input="$emit('write', $event.target.value)" class="write-box">write!</textarea>
       </div>
     </div>
 
@@ -37,8 +38,10 @@ export default {
   props: {
     data: Array,
     step: Number,
-    url: String
-  }
+    img: String,
+    more: Function
+  },
+
 }
 </script>
 <style>
