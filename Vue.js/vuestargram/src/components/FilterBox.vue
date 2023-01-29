@@ -1,11 +1,19 @@
 <template>
-  <div class="filter-item" :style="`background-image:url(${img})`"></div>
+  <div :class="filter + ' filter-item'" :style="`background-image:url(${img})`">
+    <slot></slot>
+  </div>
 </template>
 <script>
 export default {
   name: "filterBox",
+  data() {
+    return {
+      msg: 'filterBox'
+    }
+  },
   props: {
     img: String,
+    filter: String,
   },
 };
 </script>

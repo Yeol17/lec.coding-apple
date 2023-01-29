@@ -14,10 +14,12 @@
       <div class="filters">
         <FilterBox
           :img="img"
-          :class="filter"
-          v-for="(filter, i) in filters"
-          :key="i"
-        ></FilterBox>
+          :filter="filter"
+          v-for="filter in filters"
+          :key="filter"
+        >
+          <span>{{ filter }}</span>
+        </FilterBox>
       </div>
     </div>
 
