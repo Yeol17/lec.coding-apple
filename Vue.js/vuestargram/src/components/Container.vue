@@ -1,13 +1,18 @@
 <template>
   <div>
     <div v-if="step == 0">
-      <Post :data="data[i]" v-for="(item, i) in data" :key="i" />
+      <Post
+        :data="data[i]"
+        v-for="(item, i) in data"
+        :key="i"
+      />
       <button @click="more">더보기</button>
     </div>
 
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
       <div
+        :class="filterName"
         class="upload-image"
         :style="{ backgroundImage: `url(${img})` }"
       ></div>
@@ -26,6 +31,7 @@
     <!-- 글작성페이지 -->
     <div v-if="step == 2">
       <div
+        :class="filterName"
         class="upload-image"
         :style="{ backgroundImage: `url(${img})` }"
       ></div>
@@ -87,6 +93,7 @@ export default {
     step: Number,
     img: String,
     more: Function,
+    filterName: String,
   },
 };
 </script>
