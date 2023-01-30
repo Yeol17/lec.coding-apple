@@ -10,6 +10,9 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
+  <h4>안녕 {{ $store.state.name }}</h4>
+  <button @click="$store.state.name='박'">버튼</button>
+
   <Container
     :filterName="filterName"
     :data="data"
@@ -25,13 +28,6 @@
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
-
-  <!-- <div v-if="tab == 0">내용0</div>
-  <div v-if="tab == 1">내용1</div>
-  <div v-if="tab == 2">내용2</div>
-  <button @click="tabView(0)">버튼0</button>
-  <button @click="tabView(1)">버튼1</button>
-  <button @click="tabView(2)">버튼2</button> -->
 </template>
 
 <script>

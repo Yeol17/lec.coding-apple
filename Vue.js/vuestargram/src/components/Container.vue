@@ -1,11 +1,7 @@
 <template>
   <div>
     <div v-if="step == 0">
-      <Post
-        :data="data[i]"
-        v-for="(item, i) in data"
-        :key="i"
-      />
+      <Post :data="data[i]" v-for="(item, i) in data" :key="i" />
       <button @click="more">더보기</button>
     </div>
 
@@ -40,8 +36,8 @@
           @input="$emit('write', $event.target.value)"
           class="write-box"
         >
-write!
-        </textarea>
+write</textarea
+        >
       </div>
     </div>
   </div>
