@@ -1,24 +1,15 @@
 <template>
   <div>
     <div v-if="step == 0">
-      <Post :data="data[i]" v-for="(item, i) in data" :key="i" />
+      <Post @click="$store.commit('incLike', i)" :idx="i" :data="data[i]" v-for="(item, i) in data" :key="i" />
       <button @click="more">더보기</button>
     </div>
 
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
-      <div
-        :class="filterName"
-        class="upload-image"
-        :style="{ backgroundImage: `url(${img})` }"
-      ></div>
+      <div :class="filterName" class="upload-image" :style="{ backgroundImage: `url(${img})` }"></div>
       <div class="filters">
-        <FilterBox
-          :img="img"
-          :filter="filter"
-          v-for="filter in filters"
-          :key="filter"
-        >
+        <FilterBox :img="img" :filter="filter" v-for="filter in filters" :key="filter">
           <span>{{ filter }}</span>
         </FilterBox>
       </div>
@@ -26,18 +17,10 @@
 
     <!-- 글작성페이지 -->
     <div v-if="step == 2">
-      <div
-        :class="filterName"
-        class="upload-image"
-        :style="{ backgroundImage: `url(${img})` }"
-      ></div>
+      <div :class="filterName" class="upload-image" :style="{ backgroundImage: `url(${img})` }"></div>
       <div class="write">
-        <textarea
-          @input="$emit('write', $event.target.value)"
-          class="write-box"
-        >
-write</textarea
-        >
+        <textarea @input="$emit('write', $event.target.value)" class="write-box">
+write</textarea>
       </div>
     </div>
   </div>

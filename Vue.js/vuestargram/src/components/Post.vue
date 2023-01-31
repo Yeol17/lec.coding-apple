@@ -6,7 +6,7 @@
     </div>
     <div :class="`${data.filter}`" class="post-body" :style="{ backgroundImage: `url(${data.postImage})`}"></div>
     <div class="post-content">
-      <p>{{data.likes}} Likes</p>
+      <p>{{$store.state.likes[idx].like}} Likes</p>
       <p><strong>{{data.content}}</strong></p>
       <p class="date">{{data.date}}</p>
     </div>
@@ -17,7 +17,8 @@
 export default {
   name: 'Post',
   props: {
-    data: Object
+    data: Object,
+    idx: String
   }
 }
 </script>

@@ -11,7 +11,13 @@
   </div>
 
   <h4>안녕 {{ $store.state.name }}</h4>
-  <button @click="$store.state.name='박'">버튼</button>
+  <button @click="$store.commit('이름변경')">버튼</button>
+
+  <p>{{ $store.state.age }}</p>
+  <button @click="$store.commit('증가')">증가</button>
+
+  <p>{{ $store.state.more }}</p>
+  <button @click="$store.dispatch('getData')">더보기</button>
 
   <Container
     :filterName="filterName"
