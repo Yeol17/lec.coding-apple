@@ -22,6 +22,7 @@ const store = createStore({
     },
     증가(state) {
       state.age++;
+      console.log(state.age)
     },
     incLike(state, idx) {
       if (!state.likes[idx].isLike) {

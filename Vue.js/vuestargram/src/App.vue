@@ -13,20 +13,18 @@
   <h4>안녕 {{ $store.state.name }}</h4>
   <button @click="$store.commit('이름변경')">버튼</button>
 
-  <p>{{ $store.state.age }}</p>
-  <button @click="$store.commit('증가')">증가</button>
+  <p>{{ age }}</p>
+  <button @click="증가">증가</button>
 
   <p>{{ $store.state.more }}</p>
   <button @click="$store.dispatch('getData')">더보기</button>
+  
+    <!-- <p>{{ now2 }} {{ 카운터 }}</p>
+    <button @click="카운터++">버튼</button> -->
 
-  <Container
-    :filterName="filterName"
-    :data="data"
-    :step="step"
-    :img="img"
-    :more="more"
-    @write="content = $event"
-  />
+    <p>{{ name }}, {{ age }}</p>
+
+  <Container :filterName="filterName" :data="data" :step="step" :img="img" :more="more" @write="content = $event" />
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -39,6 +37,7 @@
 <script>
 import Container from "./components/Container";
 import Data from "./assets/data";
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: "App",
@@ -49,6 +48,7 @@ export default {
       step: 0,
       img: "",
       filterName: "",
+      카운터: 0,
     };
   },
   mounted() {
@@ -59,8 +59,23 @@ export default {
 
   components: {
     Container,
+  },  
+
+  computed: {
+    now2() {
+      return new Date()
+    },
+    name() {
+      return this.$store.state.name
+    },
+     ...mapState(['name', 'age', 'likes']),
+     ...mapMutations(['증가'])
   },
+
   methods: {
+    now() {
+      return new Date()
+    },
     more() {
       this.axios
         .get(`https://codingapple1.github.io/vue/more${this.cnt}.json`)
