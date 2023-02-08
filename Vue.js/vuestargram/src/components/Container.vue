@@ -20,14 +20,20 @@
       <div :class="filterName" class="upload-image" :style="{ backgroundImage: `url(${img})` }"></div>
       <div class="write">
         <textarea @input="$emit('write', $event.target.value)" class="write-box">
-write</textarea>
+          write</textarea>
+        </div>
       </div>
     </div>
-  </div>
+    
+    <div v-if="step == 3">
+      <MyPage />
+    </div>
+
 </template>
 <script>
 import Post from "./Post";
 import FilterBox from "./FilterBox.vue";
+import MyPage from "./MyPage.vue";
 
 export default {
   name: "Container",
@@ -66,6 +72,7 @@ export default {
   components: {
     Post,
     FilterBox,
+    MyPage,
   },
   props: {
     data: Array,
