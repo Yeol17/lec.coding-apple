@@ -11,20 +11,27 @@
 
 <body>
 
-  <div class="alert-box">
+  <div class="alert-box" id="alert">
     <p>알람창임</p>
-    <button onclick="alertBoxToggle('none',)">닫기</button>
+    <button id="close">닫기</button>
   </div>
   <button onclick="alertBoxToggle('block','아이디를 입력해 주세요')">버튼1</button>
   <button onclick="alertBoxToggle('block','비밀번호를 입력해 주세요')">버튼2</button>
 
   <script>
-    function alertBoxToggle(v, i) {
 
+    document.getElementById('close').addEventListener('click', function() {
+      document.getElementById('alert').style.display = 'none';
+    });
+    
+    function alertBoxToggle(v, i) {
       document.querySelector('.alert-box').style.display = v;
       const pEl = document.querySelector('.alert-box p').innerHTML = i;
     }
-
+    
+    function 알림창열기(구멍) {
+      document.getElementById('alert').style.display = 'none';
+    }
 
   </script>
 </body>
