@@ -13,25 +13,16 @@
 
   <div class="alert-box">
     <p>알람창임</p>
-    <button onclick="alertBoxToggle('none',0)">닫기</button>
+    <button onclick="alertBoxToggle('none',)">닫기</button>
   </div>
-  <button onclick="alertBoxToggle('block',1)">버튼1</button>
-  <button onclick="alertBoxToggle('block',2)">버튼2</button>
+  <button onclick="alertBoxToggle('block','아이디를 입력해 주세요')">버튼1</button>
+  <button onclick="alertBoxToggle('block','비밀번호를 입력해 주세요')">버튼2</button>
 
   <script>
     function alertBoxToggle(v, i) {
-      
-      document.querySelector('.alert-box').style.display = v;
-      const pEl = document.querySelector('.alert-box p');
 
-      if(i === 1) {
-        pEl.innerHTML = '아이디를 입력해 주세요.'
-        return;
-      }
-      if(i === 2) {
-        pEl.innerHTML = '비밀번호를 입력해 주세요.'
-        return;
-      }
+      document.querySelector('.alert-box').style.display = v;
+      const pEl = document.querySelector('.alert-box p').innerHTML = i;
     }
 
 
