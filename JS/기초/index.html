@@ -11,16 +11,30 @@
 
 <body>
 
-  <div class="alert-box">알람창임<button onclick="alertBoxClose()">x</button></div>
-  <button onclick="alertBoxOpen()">버튼</button>
+  <div class="alert-box">
+    <p>알람창임</p>
+    <button onclick="alertBoxToggle('none',0)">닫기</button>
+  </div>
+  <button onclick="alertBoxToggle('block',1)">버튼1</button>
+  <button onclick="alertBoxToggle('block',2)">버튼2</button>
 
   <script>
-    function alertBoxOpen() {
-      document.querySelector('.alert-box').style.display='block';
+    function alertBoxToggle(v, i) {
+      
+      document.querySelector('.alert-box').style.display = v;
+      const pEl = document.querySelector('.alert-box p');
+
+      if(i === 1) {
+        pEl.innerHTML = '아이디를 입력해 주세요.'
+        return;
+      }
+      if(i === 2) {
+        pEl.innerHTML = '비밀번호를 입력해 주세요.'
+        return;
+      }
     }
-    function alertBoxClose() {
-      document.querySelector('.alert-box').style.display='none';
-    }
+
+
   </script>
 </body>
 
