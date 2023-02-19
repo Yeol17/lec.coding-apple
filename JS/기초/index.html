@@ -33,7 +33,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
-      
+
     </div>
   </nav>
   <ul class="list-group">
@@ -53,12 +53,12 @@
 
     $('.hello').html('바보').css('color', 'red').addClass('show');
 
-    $('.btn-login').on('click', function() {
-      $('.black-bg').css('display', 'block')
+    $('.btn-login').on('click', function () {
+      $('.black-bg').addClass('show-modal');
     });
-    
-    $('#close').on('click', function() {
-      $('.black-bg').css('display', 'none')
+
+    $('#close').on('click', function () {
+      $('.black-bg').removeClass('show-modal');
     });
   </script>
 </body>
