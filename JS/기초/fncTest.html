@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <p></p>
+  <div>
+    <input type="text" id="check">
+  </div>
+  <br>
+  <div>
+
+    <input type="text" id="score1">
+    <input type="text" id="score2">
+    <button id="send">점수제출</button>
+  </div>
+  <script>
+    document.querySelector('#check').addEventListener('input', function (e) {
+      let val = e.target.value[e.target.value.length - 1];
+      if (val === '3' || val === '6' || val === '9') {
+        document.querySelector('p').innerHTML = e.target.value + '!  박수';
+      } else if (e.target.value == '') {
+        document.querySelector('p').innerHTML = '';
+
+      } else {
+        document.querySelector('p').innerHTML = e.target.value + '! 통과';
+      }
+    });
+
+    document.querySelector('#send').addEventListener('click', 합격했냐)
+    function 합격했냐() {
+      const score1 = document.querySelector('#score1').value;
+      const score2 = document.querySelector('#score2').value;
+      if (score1 < 0 || score1 > 100 || score2 < 0 || score2 > 100) {
+        alert('경고한다');
+      } else if (!score1 < 40 && !score2 < 40) {
+        console.log('불합격1');
+      } else if (score1 + score2 >= 120) {
+        console.log('합격')
+      } else {
+
+        console.log(score1)
+        console.log(score2)
+        console.log('블합격2')
+      }
+
+    }
+
+  </script>
+
+</body>
+
+</html>
