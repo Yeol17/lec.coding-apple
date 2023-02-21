@@ -20,9 +20,35 @@
   <div class="black-bg">
     <div class="white-bg">
       <h4>로그인하세요</h4>
-      <button class="btn btn-danger" id="close">닫기</button>
+      <form action="success.html">
+        <div class="my-3">
+          <input type="text" class="form-control">
+        </div>
+        <div class="my-3 ">
+          <input type="password" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary" id="try-login">전송</button>
+        <button type="button" class="btn btn-danger" id="close">닫기</button>
+      </form>
     </div>
   </div>
+
+  <script>
+
+    // 전송버튼 누르면 input에 입력한 값이 공백이면 알림창 띄우기
+    const $formControl = document.querySelectorAll('.form-control');
+    document.querySelector('#try-login').addEventListener('click', function (e) {
+      e.preventDefault();
+console.log(!$formControl[0].value)
+console.log(!$formControl[1].value)
+      if (!$formControl[0].value || !$formControl[1].value) {
+        alert('아이디와 비밀번호를 입력해 주세요');
+        return;
+      } else {
+        
+      }
+    })
+  </script>
 
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
@@ -44,6 +70,11 @@
     <li class="list-group-item">And a fifth one</li>
   </ul>
 
+  <div class="main-bg">
+    <h4>Shirts on sale</h4>
+    <button id="login" class="btn btn-danger">로그인</button>
+  </div>
+
 
   <script>
 
@@ -60,6 +91,8 @@
     $('#close').on('click', function () {
       $('.black-bg').removeClass('show-modal');
     });
+
+
   </script>
 </body>
 

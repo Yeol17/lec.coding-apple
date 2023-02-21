@@ -15,7 +15,7 @@ ul.list-group {
   padding: 30px;
   visibility: hidden;
   opacity: 0;
-  transition: all 1s;
+  transition: all .6s;
 }
 
 .white-bg {
@@ -27,4 +27,8 @@ ul.list-group {
 .show-modal {
   visibility: visible;
   opacity: 1;
+}
+.main-bg {
+  padding: 100px 20px;
+  background: lightgrey;
 }
