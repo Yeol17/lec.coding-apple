@@ -52,16 +52,32 @@
 
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-      <span class="navbar-brand">Navbar</span>
+      <span class="navbar-brand">JSShop</span>
+      <span class="badge bg-dark ms-auto mx-3">Dark</span>
       <div>
         <button type="button" class="btn btn-outline-warning btn-login">로그인</button>
         <button class="navbar-toggler" type="button">
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
-
     </div>
   </nav>
+
+  <script>
+    let isDark = false
+
+    $('.badge').on('click', function() {
+      isDark = !isDark;
+      if(isDark) {
+        $(this).html('Light')
+      } else { 
+        $(this).html('Dark')
+      }
+    });
+    // badge 클릭횟수가 홀수면 내부 글자를 Light로 변경
+    // badge 클릭횟수가 짝수면 내부 글자를 Dark로 변경
+  </script>
+
   <ul class="list-group">
     <li class="list-group-item">An item</li>
     <li class="list-group-item">A second item</li>
