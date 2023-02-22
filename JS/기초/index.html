@@ -64,13 +64,21 @@
   </nav>
 
   <script>
+
+    var 이름 = 'kim';
+
+  </script>
+
+  <!-- 다크모드 -->
+  <script>
     let isDark = false
 
-    $('.badge').on('click', function() {
+    $('.badge').on('click', function () {
       isDark = !isDark;
-      if(isDark) {
+      $('body').toggleClass('dark')
+      if (isDark) {
         $(this).html('Light')
-      } else { 
+      } else {
         $(this).html('Dark')
       }
     });
@@ -91,6 +99,23 @@
     <button id="login" class="btn btn-danger">로그인</button>
   </div>
 
+  <div class="alert alert-danger">
+    <span id="time">5</span>초 이내 구매시 사은품 증정!
+  </div>
+
+  <script>
+    let time = 5;
+    function 시간() {
+      time--;
+      document.querySelector('#time').innerHTML = time;
+      if (time < 0) {
+        clearInterval(타이머);
+        $('.alert').hide();
+      }
+    }
+    let 타이머 = setInterval(시간, 1000);
+
+  </script>
 
   <script>
 
@@ -107,7 +132,6 @@
     $('#close').on('click', function () {
       $('.black-bg').removeClass('show-modal');
     });
-
 
   </script>
 </body>
