@@ -70,12 +70,6 @@
     </div>
   </nav>
 
-  <script>
-
-    var 이름 = 'kim';
-
-  </script>
-
   <!-- 다크모드 -->
   <script>
     let isDark = false
@@ -104,6 +98,43 @@
   <div class="main-bg">
     <h4>Shirts on sale</h4>
     <button id="login" class="btn btn-danger">로그인</button>
+  </div>
+
+  <script>
+    let loc;
+    window.addEventListener('scroll', function () {
+      loc = window.scrollY;
+      if (loc >= 100) {
+        $('.navbar-brand').css('fontSize', '.6rem')
+      } else {
+        $('.navbar-brand').css('fontSize', '1rem')
+      }
+    });
+  </script>
+
+  <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll" mt="">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas voluptatum minus praesentium fugit debitis
+    at, laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur praesentium
+    exercitationem.
+  </div>
+
+  <script>
+    // div의 스크롤바 내린 양 + 100 == div의 실제 높이
+    $('.lorem').on('scroll', function () {
+      // div의 스크롤바 내린 양
+      let 스크롤양 = document.querySelector('.lorem').scrollTop;
+      //div의 실제 높이
+      let 실제높이 = document.querySelector('.lorem').scrollHeight;
+
+      let 높이 = document.querySelector('.lorem').clientHeight;
+      if (실제높이-10 <= 스크롤양 + 높이) {
+        alert('다읽음');
+      }
+    });
+
+  </script>
+  <div style="height: 1000px;">
+
   </div>
 
   <div class='slide-wrapper' style="overflow:hidden">
@@ -144,17 +175,17 @@
 
 
     $('.prev').on('click', function () {
-      if(now > 0) {
+      if (now > 0) {
         $('.slide-container').css('transform', `translateX(-${now - 2}00vw)`)
         now--;
-        
+
       }
     });
     $('.next').on('click', function () {
       if (now < tot) {
         $('.slide-container').css('transform', `translateX(-${now}00vw)`)
         now++;
-      } 
+      }
     });
   </script>
 
