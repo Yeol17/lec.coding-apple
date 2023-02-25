@@ -4,21 +4,20 @@
 // - 모든 div에 붙은 show 클래스명 제거
 // - div[0]에 show 클래스명 추가
 
-$('.tab-button').eq(0).on('click', function() {
-  $('.tab-button').removeClass('orange');
-  $(this).addClass('orange');
-  $('.tab-content').removeClass('show');
-  $('.tab-content').eq(0).addClass('show');
-});
-$('.tab-button').eq(1).on('click', function() {
-  $('.tab-button').removeClass('orange');
-  $(this).addClass('orange');
-  $('.tab-content').removeClass('show');
-  $('.tab-content').eq(1).addClass('show');
-});
-$('.tab-button').eq(2).on('click', function() {
-  $('.tab-button').removeClass('orange');
-  $(this).addClass('orange');
-  $('.tab-content').removeClass('show');
-  $('.tab-content').eq(2).addClass('show');
-});
+// 좋은관습 : 자주 쓰는 셀렉터 변수에 넣어 쓰기
+
+const $tabBtn = $('.tab-button');
+const $tabContent = $('.tab-content');
+
+for (var i = 0; i < $tabBtn.length; i++) {
+  $tabBtn.eq(i).on('click', function () {
+    var j = 0 ;
+    $tabBtn.removeClass('orange');
+    $(this).addClass('orange');
+    $tabContent.removeClass('show');
+    $tabContent.eq(j).addClass('show');
+    j++;
+  });
+}
+
+ 
