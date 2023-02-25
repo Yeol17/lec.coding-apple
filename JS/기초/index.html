@@ -68,7 +68,11 @@
         </button>
       </div>
     </div>
+    <div class="scrollGauge">
+      <div class="bar"></div>
+    </div>
   </nav>
+
 
   <!-- 다크모드 -->
   <script>
@@ -105,9 +109,9 @@
     window.addEventListener('scroll', function () {
       loc = window.scrollY;
       if (loc >= 100) {
-        $('.navbar-brand').css('fontSize', '.6rem')
+        $('.navbar-brand').css('font-size', '.6rem')
       } else {
-        $('.navbar-brand').css('fontSize', '1rem')
+        $('.navbar-brand').css('font-size', '1rem')
       }
     });
   </script>
@@ -119,17 +123,33 @@
   </div>
 
   <script>
-    // div의 스크롤바 내린 양 + 100 == div의 실제 높이
-    $('.lorem').on('scroll', function () {
-      // div의 스크롤바 내린 양
-      let 스크롤양 = document.querySelector('.lorem').scrollTop;
-      //div의 실제 높이
-      let 실제높이 = document.querySelector('.lorem').scrollHeight;
+    // // div의 스크롤바 내린 양 + 100 == div의 실제 높이
+    // $('.lorem').on('scroll', function () {
+    //   // div의 스크롤바 내린 양
+    //   let 스크롤양 = document.querySelector('.lorem').scrollTop;
+    //   //div의 실제 높이
+    //   let 실제높이 = document.querySelector('.lorem').scrollHeight;
 
-      let 높이 = document.querySelector('.lorem').clientHeight;
-      if (실제높이-10 <= 스크롤양 + 높이) {
-        alert('다읽음');
-      }
+    //   let 높이 = document.querySelector('.lorem').clientHeight;
+    //   if (실제높이 - 10 <= 스크롤양 + 높이) {
+    //     alert('다읽음');
+    //   }
+
+
+    // });
+    
+    const $bar = document.querySelector('.bar');
+    
+    $(window).on('scroll', function () {
+      const 브라우저총높이 = document.documentElement.scrollHeight;
+      console.log(브라우저총높이);
+      const 브라우저높이 = document.documentElement.clientHeight;
+      console.log(브라우저높이);
+      const 스크롤길이 = 브라우저총높이 - 브라우저높이;
+      let  스크롤값;
+      스크롤값 = document.documentElement.scrollTop;
+      let 게이지 = (스크롤값 / 스크롤길이) * 95; 
+      $bar.style.width = `${5 + 게이지}%`;
     });
 
   </script>
