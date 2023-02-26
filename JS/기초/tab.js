@@ -9,13 +9,21 @@
 const $tabBtn = $('.tab-button');
 const $tabContent = $('.tab-content');
 
-for (var i = 0; i < $tabBtn.length; i++) {
-  $tabBtn.eq(i).on('click', function () {
-    $tabBtn.removeClass('orange');
-    $(this).addClass('orange');
-    $tabContent.removeClass('show');
-    $tabContent.eq(j).addClass('show');
-  });
-}
 
- 
+// for (let i = 0; i < $tabBtn.length; i++) {
+//   $tabBtn.eq(i).on('click', function(e) {
+//     탭열기(i);
+//   });
+// }
+let tabButtons = document.querySelectorAll('.tab-button');
+
+$('.list').click(function (e) {
+  탭열기(parseInt(e.target.dataset.id))
+});
+
+function 탭열기(i) {
+  $tabBtn.removeClass('orange');
+  $tabBtn.eq(i).addClass('orange');
+  $tabContent.removeClass('show');
+  $tabContent.eq(i).addClass('show');
+}
