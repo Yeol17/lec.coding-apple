@@ -61,6 +61,20 @@
 
 <body>
 
+  <div class="container mt-3">
+    <div class="card p-3">
+      상품명 / 가격
+    </div>
+  </div>
+
+  <script>
+
+    var car = ['소나타', 50000, 'white'];
+    var car2 = { name: '소나타', price: 50000 };
+
+    document.querySelector('.card').innerHTML = `${car2.name} / ${car2.price}`;
+  </script>
+
   <div class="container mt-5">
     <ul class="list">
       <li class="tab-button" data-id="0">Products</li>
