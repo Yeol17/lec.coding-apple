@@ -11,12 +11,10 @@ const $tabContent = $('.tab-content');
 
 for (var i = 0; i < $tabBtn.length; i++) {
   $tabBtn.eq(i).on('click', function () {
-    var j = 0 ;
     $tabBtn.removeClass('orange');
     $(this).addClass('orange');
     $tabContent.removeClass('show');
     $tabContent.eq(j).addClass('show');
-    j++;
   });
 }
 
