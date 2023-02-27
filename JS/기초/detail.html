@@ -75,30 +75,52 @@
   <form class="container my-5 form-group">
     <p>상품선택</p>
     <select class="form-select mt-2" id="g_type">
-      <option value="N">선택</option>
       <option>모자</option>
       <option>셔츠</option>
+      <option>바지</option>
     </select>
     <select name="size" id="size" class="form-select mt-2 hide">
-      <option value="N">선택</option>
-      <option value="90">90</option>
-      <option value="95">95</option>
-      <option value="100">100</option>
-      <option value="105">105</option>
-      <option value="110">110</option>
+      <option>95</option>
+      <option>100</option>
     </select>
   </form>
 
+  <div id="test">
+
+  </div>
+
   <script>
+    // JS로 html 생성법1
+    // let p = document.createElement('p');
+    // p.innerHTML = '안녕1';
+    // document.querySelector('#test').appendChild(p);
+
+    // JS로 html 생성법2
+    // let template = '<p>안녕2</p>';
+    // document.querySelector('#test').insertAdjacentHTML('beforeend', template);
+    // insertAdjacentHTML(위치, 값), 문자형 HTML 넣어주는 함수
+
+    // jQuery
+    // $('#test').append(template);
+
+    // createElement()가 2배 가량 빠르지만, 컴퓨터가 우낙 좋아져서 큰 의미는 없다.
+
 
     let size = $('#size');
     let gType = $('#g_type');
 
     gType.on('input', function () {
       let val = this.value;
-      
+
       if (val == '셔츠') {
         size.removeClass('hide');
+        let tmp = '<option>95</option><option>100</option>';
+        size.html(tmp);
+      } else if (val == '바지') {
+        size.removeClass('hide');
+        let tmp = '<option>29</option><option>30</option>';
+        size.html(tmp);
+
       } else {
         size.addClass('hide');
       }
