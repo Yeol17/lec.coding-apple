@@ -63,16 +63,17 @@
 
   <div class="container mt-3">
     <div class="card p-3">
-      상품명 / 가격
+      <span class="car-title">상품명</span>
+      <span class="car-price">가격</span>
     </div>
   </div>
 
   <script>
+    let tmp = "temp";
+    var car2 = { name: '소나타', price: [50000, 3000, 4000], tmp: tmp};
 
-    var car = ['소나타', 50000, 'white'];
-    var car2 = { name: '소나타', price: 50000 };
-
-    document.querySelector('.card').innerHTML = `${car2.name} / ${car2.price}`;
+    document.querySelector('.car-title').innerHTML = car2.name;
+    document.querySelector('.car-price').innerHTML = car2.price[0];
   </script>
 
   <div class="container mt-5">
