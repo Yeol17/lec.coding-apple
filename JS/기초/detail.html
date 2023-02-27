@@ -56,6 +56,10 @@
     .show {
       display: block;
     }
+
+    .hide {
+      display: none;
+    }
   </style>
 </head>
 
@@ -68,9 +72,43 @@
     </div>
   </div>
 
+  <form class="container my-5 form-group">
+    <p>상품선택</p>
+    <select class="form-select mt-2" id="g_type">
+      <option value="N">선택</option>
+      <option>모자</option>
+      <option>셔츠</option>
+    </select>
+    <select name="size" id="size" class="form-select mt-2 hide">
+      <option value="N">선택</option>
+      <option value="90">90</option>
+      <option value="95">95</option>
+      <option value="100">100</option>
+      <option value="105">105</option>
+      <option value="110">110</option>
+    </select>
+  </form>
+
+  <script>
+
+    let size = $('#size');
+    let gType = $('#g_type');
+
+    gType.on('input', function () {
+      let val = this.value;
+      
+      if (val == '셔츠') {
+        size.removeClass('hide');
+      } else {
+        size.addClass('hide');
+      }
+    });
+
+  </script>
+
   <script>
     let tmp = "temp";
-    var car2 = { name: '소나타', price: [50000, 3000, 4000], tmp: tmp};
+    var car2 = { name: '소나타', price: [50000, 3000, 4000], tmp: tmp };
 
     document.querySelector('.car-title').innerHTML = car2.name;
     document.querySelector('.car-price').innerHTML = car2.price[0];
