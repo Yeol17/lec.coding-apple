@@ -90,21 +90,8 @@
   </div>
 
   <script>
-    // JS로 html 생성법1
-    // let p = document.createElement('p');
-    // p.innerHTML = '안녕1';
-    // document.querySelector('#test').appendChild(p);
-
-    // JS로 html 생성법2
-    // let template = '<p>안녕2</p>';
-    // document.querySelector('#test').insertAdjacentHTML('beforeend', template);
-    // insertAdjacentHTML(위치, 값), 문자형 HTML 넣어주는 함수
-
-    // jQuery
-    // $('#test').append(template);
-
-    // createElement()가 2배 가량 빠르지만, 컴퓨터가 우낙 좋아져서 큰 의미는 없다.
-
+    let pants = [28, 30, 32, 34];
+    let shirts = [95, 100, 105];
 
     let size = $('#size');
     let gType = $('#g_type');
@@ -114,12 +101,16 @@
 
       if (val == '셔츠') {
         size.removeClass('hide');
-        let tmp = '<option>95</option><option>100</option>';
-        size.html(tmp);
+        size.html('');
+        shirts.forEach((a) => {
+          size.append(`<option>${a}</option>`)
+        })
       } else if (val == '바지') {
         size.removeClass('hide');
-        let tmp = '<option>29</option><option>30</option>';
-        size.html(tmp);
+        size.html('');
+        pants.forEach(function (a) {
+          size.append(`<option>${a}</option>`)
+        })
 
       } else {
         size.addClass('hide');
