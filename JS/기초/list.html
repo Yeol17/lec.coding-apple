@@ -13,7 +13,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
-
+  <style>
+    .hide {
+      display: none
+    }
+  </style>
 </head>
 
 <body>
@@ -21,13 +25,16 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-sm-4">
+      <!-- <div class="col-sm-4">
         <img src="https://via.placeholder.com/600" class="w-100">
         <h5>Card title</h5>
         <p>가격 : 70000</p>
-      </div>
+      </div> -->
 
     </div>
+  </div>
+  <div class="container">
+    <button class="btn btn-danger" id="more">더보기</button>
   </div>
 
   <script>
@@ -39,18 +46,37 @@
       { id: 2, price: 60000, title: 'Black Monastery' }
     ];
 
-    $('.row').html('');
+    let $row = $('.row');
+    let cnt = 1;
+    let $more = $('#more');
 
-    for (let i = 0; i < 3; i++) {
-      let tmp = `
-        <div class="col-sm-4">
-          <img src="https://via.placeholder.com/600" class="w-100">
-          <h5>${products[i].title}</h5>
-          <p>가격 : ${products[i].price}</p>
-        </div>`;
-      $('.row').append(tmp);
+    function createCard(data) {
+      data.forEach(a => {
+        let tmp =
+          `<div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100">
+            <h5>${a.title}</h5>
+            <p>가격 : ${a.price}</p>
+          </div>`;
+        $row.append(tmp);
+      })
     }
 
+    createCard(products);
+
+    // AJAX 요청
+    $more.click(() => {
+      $.get(`https://codingapple1.github.io/js/more${cnt}.json`)
+        .then(data => {
+          createCard(data);
+          cnt++;
+          if (cnt > 2) {
+            $more.addClass('hide');
+          }
+        }).catch(err => {
+          console.log(err);
+        })
+    })
   </script>
 
 </body>
