@@ -17,6 +17,10 @@
     .hide {
       display: none
     }
+
+    input:invalid {
+      border: 3px solid red;
+    }
   </style>
 </head>
 
@@ -34,9 +38,11 @@
     </div>
   </div>
   <div class="container my-3">
+    <button class="btn btn-primary" id="origin">기본순</button>
     <button class="btn btn-success" id="price">가격순</button>
-    <button class="btn btn-primary" id="desc">다나가순</button>
+    <button class="btn btn-secondary" id="desc">다나가순</button>
     <button class="btn btn-warning" id="under">6만원이하</button>
+    <input type="text" pattern="[0-9]+" id="priceRange"> 미만<button class="btn btn-warning mx-2" id="range">검색</button>
   </div>
   <div class="container">
     <button class="btn btn-danger" id="more">더보기</button>
@@ -51,29 +57,37 @@
       { id: 2, price: 60000, title: 'Black Monastery' }
     ];
 
+    let prodCopy = [...products];
+
     function cardInit(prods) {
       $row.html('')
       createCard(prods)
     }
 
-    $('#price').click(() => {
-      products.sort((a, b) => {
-        return a.price - b.price
-      })
+    $('#origin').click(() => {
       cardInit(products);
+    });
+    $('#price').click(() => {
+      prodCopy.sort((a, b) => a.price - b.price)
+      cardInit(prodCopy);
     })
     $('#desc').click(() => {
-      products.sort((a, b) => {
+      prodCopy.sort((a, b) => {
         if (a.title < b.title) return 1;
         else return -1;
       })
-      cardInit(products);
+      cardInit(prodCopy);
     });
     $('#under').click(() => {
-      let tmp = products.filter(a => {
-        return a.price < 60000 
-      })
+      let tmp = prodCopy.filter(a => a.price < 60000)
       cardInit(tmp);
+    })
+    $('#range').click(() => {
+      
+      let res = prodCopy.filter(a => {
+        return a.price < $('#priceRange').val()
+      })
+      cardInit(res);
     })
     // var arr = [5, 7, 3, 6, 11, 2];
     // var arr2 = ['a', 'c', 'b'];
