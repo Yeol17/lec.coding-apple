@@ -83,7 +83,7 @@
       cardInit(tmp);
     })
     $('#range').click(() => {
-      
+
       let res = prodCopy.filter(a => {
         return a.price < $('#priceRange').val()
       })
@@ -105,6 +105,7 @@
     let $row = $('.row');
     let $more = $('#more');
     let cnt = 1;
+    let cart = [];
 
     function createCard(data) {
       data.forEach(a => {
@@ -113,13 +114,26 @@
             <img src="https://via.placeholder.com/600" class="w-100">
             <h5>${a.title}</h5>
             <p>가격 : ${a.price}</p>
+            <button class="buy" data-id="${a.id}">구매</button>
           </div>`;
         $row.append(tmp);
       })
     }
+    
+    //localStorage에 저장하기
+    // 카드하단 구매버튼추가하고 
+    // 버튼을 누르면 누른 상품의 이름을 localStorage에 저장
 
+    
     createCard(products);
 
+    $('.buy').click((e) => {
+      let t = e.target;
+      cart.push(prodCopy[t.dataset.id].title);
+      let tmp = JSON.stringify(cart);
+      localStorage.setItem('cart', tmp);
+    })
+    
     // AJAX 요청
     $more.click(() => {
       $.get(`https://codingapple1.github.io/js/more${cnt}.json`)
