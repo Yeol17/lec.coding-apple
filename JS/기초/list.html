@@ -114,26 +114,41 @@
             <img src="https://via.placeholder.com/600" class="w-100">
             <h5>${a.title}</h5>
             <p>가격 : ${a.price}</p>
-            <button class="buy" data-id="${a.id}">구매</button>
+            <button class="buy">구매</button>
           </div>`;
         $row.append(tmp);
       })
     }
-    
+
     //localStorage에 저장하기
     // 카드하단 구매버튼추가하고 
     // 버튼을 누르면 누른 상품의 이름을 localStorage에 저장
 
-    
     createCard(products);
 
+    // let cart = [
+    //   {title: a,quant:1},
+    //   {title: b,quant:2},
+    //   {title: c,quant:3},
+    // ]
     $('.buy').click((e) => {
-      let t = e.target;
-      cart.push(prodCopy[t.dataset.id].title);
-      let tmp = JSON.stringify(cart);
-      localStorage.setItem('cart', tmp);
+      let tit = $(e.target).siblings('h5').text();
+      let cart = JSON.parse(localStorage.getItem('cart'));
+
+      if ( cart != null) {
+        let search = cart.find(el => el.title === tit);
+        if(search){
+          search.quant++
+        } else {
+          cart.push({title: tit, quant: 1});
+        }
+        cart = JSON.stringify(cart);
+        localStorage.setItem('cart', cart);
+      } else {
+        localStorage.setItem('cart', JSON.stringify([{title: tit,quant: 1}]));
+      }
     })
-    
+
     // AJAX 요청
     $more.click(() => {
       $.get(`https://codingapple1.github.io/js/more${cnt}.json`)
