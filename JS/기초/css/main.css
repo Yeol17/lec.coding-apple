@@ -74,7 +74,7 @@ ul.list-group {
 /* 캐러셀 */
 .slide-container {
   width: 300vw;
-  transition: all 1s;
+  transition: all .4s;
 }
 
 .slide-box {
