@@ -30,17 +30,15 @@
     </div>
   </nav>
   <div class="container-fluid">
-    <div class="container-fluid">
+    <div>
       <input type="text" placeholder="검색어입력" class="my-3" id="search">
     </div>
-    <div class="container-fluid ">
-      <div class="card-box d-flex h-auto">
+      <div class="card-box grid d-flex list">
         
       </div>
-    </div>
     <div class="container-fluid cart-wrapper p-4 m-2">
       <h4 class="cart-title">장바구니</h4>
-      <div class="container-fluid cart">여기로 드래그</div>
+      <div class="container-fluid card-box cart d-flex p-3" ondrop="drop(event)" ondragover="allowDrop(event)">여기로 드래그</div>
     </div>
   </div>
 </body>
