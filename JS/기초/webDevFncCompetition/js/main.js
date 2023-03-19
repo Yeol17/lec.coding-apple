@@ -51,10 +51,8 @@ $.get('../data/store.json').then(data => {
 
   $('.btn-cart').click(function (e) {
     let prodId = e.target.dataset.id; // 담기버튼을 누른 상품의 고유번호
-    console.log(prodId);
+  
     cart = JSON.parse(localStorage.getItem('cart'));
-
-    console.log(cart);
     // {id: 0, title: '식기세척기', quan: 1}
     // {id: 1, title: '원목 침대 프레임', quan: 1}
 
@@ -181,8 +179,7 @@ function addCart(target) {
   }
   // filter() : 콜백함수에 의해 통과된 배열의 요소로만 필터링된 얕은 복사본을 만든다.
 
-  let template = `
-    <div class="card p-3 g-col-md-3 bg-white w-25 mb-3 mx-2" id=${data.id} >
+  `<div class="card p-3 g-col-md-3 bg-white w-25 mb-3 mx-2" id=${data.id} >
       <img src="./images/${data.photo}" alt="${data.title}" class="card-img">
       <div class="card-body p-0 mt-3">
         <h5 class="card-text title">${data.title}</h5>
