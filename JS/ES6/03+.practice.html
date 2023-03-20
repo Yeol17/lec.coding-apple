@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04.practice / this & ( ) => { }</title>
+</head>
+
+<body>
+  <button id="버튼">버튼이에요</button>
+
+  <script>
+    // q1. 간단한 메소드 만들기
+    var 사람 = {
+      name: '손흥민',
+      sayHi() {
+        console.log('안녕 나는 ' + this.name)
+      }
+    };
+
+    사람.sayHi(); // 안녕 나는 손흥민
+
+    // q2. 오브젝트 내의 데이터를 전부 더해주는 메소드만들기
+    // (조건) 자료라는 object 내에 코드 작성 금지
+    var 자료 = {
+      data: [1, 2, 3, 4, 5]
+    }
+
+    자료.전부더하기 = function () {
+      var tot = 0;
+      this.data.forEach(a => {
+        tot = tot + a;
+      })
+      return tot;
+    }
+
+    // q3. setTimeout 이용해보기
+    // 그럼 setTimeout을 이용해서 1초 후에 this.innerHTML을 
+    // 콘솔창에 출력하고 싶으면 
+    // 어떻게 코드를 수정해야할까
+    document.getElementById('버튼').addEventListener('click', function () {
+      setTimeout(() => console.log(this.innerHTML), 1000)
+    });
+
+
+  </script>
+</body>
+
+</html>
