@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03.arrowFunction</title>
+</head>
+  <button>버튼</button>
+<body>
+  <script>
+    // 1. 코드들을 기능으로 묶고 싶을 때
+    // 2. 입출력 기계를 만들고 싶을 때
+
+    var 함수 = (a) => {
+      return a + 10
+    }
+
+    // 화살표 함수 장점
+    // 1. 입출력 기계 만들 때 보기쉬움
+    // 2. 파라미터가 한 개일 때 소괄호 생략 가능
+    // 3. 실행문이 한 줄이면 {}, return 생략 가능
+
+    document.querySelector('button').addEventListener('click', function(e) {
+      console.log('일반함수의 this : ' + this);
+      console.log('일반함수의 e.currentTarget : ' + e.currentTarget);
+    })
+    document.querySelector('button').addEventListener('click', (e) => {
+      console.log('화살표함수의 this : ' + this);
+      console.log('화살표함수의 e.currentTarget : ' + e.currentTarget);
+    })
+
+    var 오브젝트 = {
+      함수1: function() {
+        return this
+      },
+      함수2: () => {
+        return this
+      }
+    }
+  </script>
+
+</body>
+
+</html>
