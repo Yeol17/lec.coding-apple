@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // #3. 함수 파라미터 넣을 때
+
+    function 더하기(a, b, c) {
+      console.log(a + b + c);
+    }
+
+    var 어레이 = [10, 20, 30];
+
+    더하기(어레이[0], 어레이[1], 어레이[2]) // 주먹구구식
+    더하기.apply(undefined, 어레이); // 옛날방식
+    더하기(...어레이); // 요즘방식
+
+
+    // 내장함수 apply
+    var person = {
+      인사: function () {
+        console.log('안녕' + this.name);
+      }
+    }
+
+    // person.안녕();
+
+    // person.인사()를 person2에 적용하고 싶을 때
+    var person2 = {
+      name: '손흥민'
+    }
+    
+    person.인사.apply(person2)
+    person.인사.call(person2)
+
+  </script>
+</body>
+
+</html>
