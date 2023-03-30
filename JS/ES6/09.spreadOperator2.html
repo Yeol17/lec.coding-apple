@@ -21,10 +21,11 @@
 
     더하기(어레이[0], 어레이[1], 어레이[2]) // 주먹구구식
     더하기.apply(undefined, 어레이); // 옛날방식
+    // 
     더하기(...어레이); // 요즘방식
 
 
-    // 내장함수 apply
+    // 내장함수 apply/call
     var person = {
       인사: function () {
         console.log('안녕' + this.name);
@@ -37,9 +38,9 @@
     var person2 = {
       name: '손흥민'
     }
-    
-    person.인사.apply(person2)
-    person.인사.call(person2)
+
+    person.인사.apply(person2, [1, 2]) // 파라미터에 배열이 가능
+    person.인사.call(person2, 1)
 
   </script>
 </body>
