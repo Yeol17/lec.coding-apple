@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    // constructor의 용도
+    // 비슷한 object를 여러개 만들 때
+
+    // ex.학생 출석부를 만들 때
+
+    // var 학생1 = {
+    //   name: 'Kim',
+    //   age: 15,
+    // }
+
+    // 학생1.sayHi = function(){
+    //   console.log('Hi ' + this.name + ' 입니다.');
+    // }
+
+    // 학생1.sayHi();
+
+    function 기계(name) {
+      this.name = name;
+      this.age = 15;
+      this.sayHi = function () {
+        console.log('Hi ' + this.name + ' 입니다.');
+      }
+    }
+
+    var 학생1 = new 기계('가');
+    var 학생2 = new 기계('나');
+
+    // this: 기계에서 새로 생성되는 object (instance)
+    // 기계: object 생성기계 (constructor, 생성자)
+
+
+  </script>
+
+</body>
+
+</html>
