@@ -13,36 +13,36 @@
 
   <script>
 
-    let 프로미스 = new Promise(function(성공, 실패) {
-      document.querySelector('#btn').addEventListener('click', function(){
+    let 프로미스 = new Promise(function (성공, 실패) {
+      document.querySelector('#btn').addEventListener('click', function () {
         성공('클릭');
       });
     });
-  
+
     // 프로미스.then(function(결과){
     //   console.log(결과);
     // });
-    
+
     // async function 버튼눌렀남요() {
     //   let  결과 = await 프로미스;
     //   console.log(결과);
     // }
-    
+
     // 버튼눌렀남요();
-    
+
     // ----------------------------------------------
 
     async function isClick() {
-      document.querySelector('#btn').addEventListener('click', function() {
-        return '성공'
-      })
-    }
-
-    async function 버튼눌럿어() {
-      let res = await isClick();
+      let promise = new Promise(function (resolve, reject) {
+        document.querySelector('#btn').addEventListener('click', function () {
+          resolve('버튼을 눌렀습니다.');
+        })
+      });
+      let res = await promise;
       console.log(res);
-    }
 
+    }
+    isClick();
 
 
 
