@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=1.0, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+  <img id="test" src="https://codingapple1.github.io/kona.jpg">
+
+  <script>
+
+    // Q1.
+    // let 이미지로드 = new Promise(function (solve, reject) {
+
+    //   document.querySelector('#test').addEventListener('load', function () {
+    //     solve();
+    //   })
+    //   document.querySelector('#test').addEventListener('error', function () {
+    //     reject();
+    //   })
+    // })
+    // 이미지로드.then(function () {
+    //   console.log('성공');
+    // }).catch(function () {
+    //   console.log('실패');
+    // })
+
+    // Q2.
+    let 프로미스 = new Promise(function (성공, 실패) {
+      $.get('https://codingapple1.github.io/hello.txt').done(function (결과) {
+        성공(결과);
+      })
+      // console.log(프로미스);
+    });
+    console.log(프로미스);
+    프로미스.then(function (결과) {
+      console.log(결과);
+    }).then(function () {
+      console.log(프로미스);
+      let 프로미스2 = new Promise(function (성공, 실패) {
+        $.get('https://codingapple1.github.io/hello2.txt')
+          .done(function (결과) {
+            성공(결과);
+          })
+      })
+      프로미스2.then(function(결과) {
+        console.log(결과)
+      })
+    })
+
+
+
+
+  </script>
+</body>
+
+</html>

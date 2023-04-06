@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // async를 function 앞에 붙이면 실행 후 Promise 객체가 남는다.
+    async function 더하기() {
+      // 항상 성공만 리턴
+      // return 1 + 1
+      // 필요 시, Promise.reject() 로 실패를 리턴할 수 있다.
+      // return Promise.reject('실패임')
+      var 프로미스 = new Promise(function (resolve, reject) {
+        var 연산 = 1 + 1;
+        // resolve(연산);
+        reject();
+      });
+
+      try {
+        var 결과 = await 프로미스;
+        console.log(결과);
+      } catch {
+        console.log('잘안되었군요.');
+       }
+
+      // 프로미스.then(function(res) {
+      //   console.log();
+      // })
+
+      // await은 실패 시, error
+    }
+
+
+    // 더하기().then(function (결과) {
+    //   console.log('성공');
+    //   console.log(결과);
+    // }).catch(function (res) {
+    //   console.log(res);
+    // });
+
+    더하기();
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

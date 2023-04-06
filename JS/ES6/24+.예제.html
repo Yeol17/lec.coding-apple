@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">버튼</button>
+
+  <script>
+
+    let 프로미스 = new Promise(function(성공, 실패) {
+      document.querySelector('#btn').addEventListener('click', function(){
+        성공('클릭');
+      });
+    });
+  
+    // 프로미스.then(function(결과){
+    //   console.log(결과);
+    // });
+    
+    // async function 버튼눌렀남요() {
+    //   let  결과 = await 프로미스;
+    //   console.log(결과);
+    // }
+    
+    // 버튼눌렀남요();
+    
+    // ----------------------------------------------
+
+    async function isClick() {
+      document.querySelector('#btn').addEventListener('click', function() {
+        return '성공'
+      })
+    }
+
+    async function 버튼눌럿어() {
+      let res = await isClick();
+      console.log(res);
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>
