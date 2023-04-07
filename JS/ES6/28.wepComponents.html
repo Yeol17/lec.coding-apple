@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+  <div>
+    <custom-input name="아이디"></custom-input>
+  </div>
+  <div>
+    <custom-input name="비번"></custom-input>
+  </div>
+<body>
+  <script>
+    // web components
+    // <커스텀태그>로 길고 복잡한 HTML 축약하는 방법
+
+    // <label>,<input> -> <custom-input>
+
+    class 클래스 extends HTMLElement {
+      connectedCallback() {
+        // let 라벨 = document.createElement('label');
+        // 라벨.textContent = `이메일 입력`;
+        // this.appendChild(라벨);
+        // let 인풋 = document.createElement('input');
+        // this.appendChild(인풋)
+        let name = this.getAttribute('name');
+        this.innerHTML = `<label>${name}인풋이에요</label><input>`;
+      }
+      static get observedAttributes() { // name 이라는 attribute 바뀌는지 감시하는 역할
+        return ['name']
+      }
+      attributeChangedCallback() { // 바뀌면 실행할 코드
+        // console.log(this.getAttribute('name'));
+        let name = this.getAttribute('name');
+        this.innerHTML = `<label>${name}인풋이에요</label><input>`;
+      }
+    }
+
+    customElements.define('custom-input', 클래스);
+
+    // *장점 : html 중복제거, 다른 페이지에서 재활용 가능
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
