@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import './App.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function App() {
 
@@ -38,8 +38,8 @@ function App() {
       {
         글제목.map(function (a, i) {
           return (
-            <div style={{height: '120px'}}className="list" key={i}>
-              <div style={{float: 'left', width: '90%'}}>
+            <div style={{ height: '120px' }} className="list" key={i}>
+              <div style={{ float: 'left', width: '90%' }}>
                 <h4 onClick={() => {
                   setModal(!modal)
                   setIdx(i)
@@ -51,7 +51,7 @@ function App() {
                 }}>❤️</span>{like[i]}</h4>
                 <p>2월 17일 발행</p>
               </div>
-              <button style={{float: 'right', margin: '6px 6px 0 0'}} onClick={() => {
+              <button style={{ float: 'right', margin: '6px 6px 0 0' }} onClick={() => {
                 let copy = [...글제목];
                 copy.splice(i, 1);
                 제목변경(copy);
@@ -80,7 +80,7 @@ function App() {
         }}></input>
         <button onClick={() => {
           console.log(like);
-          if(입력값 == '') return
+          if (입력값 == '') return
           let copy = [...글제목];
           copy.push(입력값);
           제목변경(copy);
@@ -95,7 +95,7 @@ function App() {
         modal ? <Modal 글제목={글제목} title={title} /> : null
       }
 
-
+      {/* <Modal2 글제목={글제목}></Modal2> */}
 
     </div >
 
@@ -113,4 +113,23 @@ function Modal(props) {
   )
 }
 
+// class Modal2 extends React.Component {
+//   constructor(props) {
+//     super(props)
+//     this.state = {
+//       name: 'Kim',
+//       age: 20
+//     }
+//   }
+//   render() {
+//     return (
+//       <div>리액트 {this.state.age} 
+//       <p>{this.props.글제목[0]}</p>
+//         <button onClick={() => {
+//           this.setState({ age: 21 })
+//         }}>수정</button>
+//       </div>
+//     )
+//   } 
+// }
 export default App;
