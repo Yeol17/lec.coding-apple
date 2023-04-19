@@ -3,11 +3,18 @@
   /* background: url('./images/bg.png') center/cover; */
 }
 .prods {
-  width: 100%;  
+  width: 100%;
+  box-sizing: border-box;
 }
 .prods .item {
-  width: 33%;
-  height: 100px;
+  width: 33.33%;
+  /* margin: 0 5px; */
+  flex-grow: 1;
+  box-sizing: border-box;
+  height: 100%;
+}
+.prods .item:hover {
+  box-shadow: 3px 3px 8px 2px rgba(0,0,0, 0.3);
 }
 .App {
   text-align: center;
