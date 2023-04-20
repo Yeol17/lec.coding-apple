@@ -3,13 +3,17 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import './App.css';
 import bg from './images/bg.png';
 import data from './data';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+import Detail from './routes/detail'
 
 function App() {
 
   let [shoes] = useState(data);
+  let navigate = useNavigate();
 
   return (
     <div className="App">
+
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">
@@ -21,26 +25,67 @@ function App() {
               className="d-inline-block align-top"
             /> React Shop
           </Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">홈</Nav.Link>
-            <Nav.Link href="#best">베스트</Nav.Link>
-            <Nav.Link href="#new">신상품</Nav.Link>
-            <Nav.Link href="#">남성</Nav.Link>
+          <Nav className="me-auto nav">
+            <Link to='/'>Home</Link>
+            <Nav.Link href="/best">Best</Nav.Link>
+            <Nav.Link href="/new">New</Nav.Link>
+            <Nav.Link onClick={() => { navigate('/detail') }}>Detail</Nav.Link>
+            <Link to='/detail'>상품</Link>
           </Nav>
         </Container>
       </Navbar>
-      <div className="main-bg" style={{ background: `url(${bg}) center/cover` }}></div>
 
-      <div className="container">
-        <h3>상품목록</h3>
-        <div className="row prods mx-auto">
-          {shoes.map((shoe) => {
-            return (
-              <Card shoe={shoe} key={shoe.id} />
-            )
-          })}
-        </div>
-      </div>
+      <Routes>
+        <Route path='/' element={
+          <>
+            <div className="main-bg" style={{ background: `url(${bg}) center/cover` }}></div>
+            <div className="container">
+              <h3>상품목록</h3>
+              <div className="row prods mx-auto">
+                {shoes.map((shoe) => {
+                  return (
+                    <Card shoe={shoe} key={shoe.id} />
+                  )
+                })}
+              </div>
+            </div>
+          </>
+        } />
+
+        <Route path='/detail' element={<Detail />} />
+
+        <Route path='/event' element={<Event />}>
+          <Route path='one' element={<div>첫 주문시 양배추즙 서비스</div>}></Route>
+          <Route path='two' element={<div>생일기념 쿠폰받기</div>}></Route>
+        </Route>
+
+        <Route path='/about' element={<About />}>
+          <Route path='member' element={<div>멤버임</div>} />
+          <Route path='location' element={<div>위치</div>} />
+        </Route>
+
+        <Route path='*' element={<div>없는 페이지에요</div>} />
+      </Routes>
+
+
+    </div>
+  )
+}
+
+function Event() {
+  return (
+    <div>
+      <h4>오늘의 이벤트</h4>
+      <Outlet></Outlet>
+    </div>
+  )
+}
+
+function About() {
+  return (
+    <div>
+      <h4>회사정보임</h4>
+      <Outlet></Outlet>
     </div>
   )
 }
