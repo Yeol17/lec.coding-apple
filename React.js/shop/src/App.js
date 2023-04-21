@@ -4,7 +4,7 @@ import './App.css';
 import bg from './images/bg.png';
 import data from './data';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
-import Detail from './routes/detail'
+import Detail from './routes/Detail'
 
 function App() {
 
@@ -19,7 +19,7 @@ function App() {
           <Navbar.Brand href="#home">
             <img
               alt="logos"
-              src="./logo512.png"
+              src={`${process.env.PUBLIC_URL}/logo192.png`}
               width="30"
               height="30"
               className="d-inline-block align-top"
@@ -52,7 +52,7 @@ function App() {
           </>
         } />
 
-        <Route path='/detail/:id' element={<Detail shoes={shoes} />} />
+        <Route path='/detail/:id' element={<Detail shoes={shoes}  />} />
 
         <Route path='/event' element={<Event />}>
           <Route path='one' element={<div>첫 주문시 양배추즙 서비스</div>}></Route>

@@ -1,17 +1,32 @@
 import { useParams } from "react-router-dom";
+import styled from "styled-components"
+
+let YellowBtn = styled.button`
+  background: ${props => props.bg};
+  color: ${props => props.bg == 'blue' ? 'white' : 'black'};
+  padding: 10px;
+`
+let NewBtn = styled(YellowBtn)`
+  border-radius: 30px;
+`
 
 function Detail(props) {
 
   let { id } = useParams();
-  let shoes = [...props.shoes];
-  let res = shoes.find(shoe => shoe.id == id)
-
+  let res = props.shoes.find(shoe => shoe.id == id)
+  
   if (res) {
+
     return (
       <div className="container">
+
+        <YellowBtn bg="blue">버튼</YellowBtn>
+        <YellowBtn bg="orange">버튼</YellowBtn>
+        <NewBtn bg='green'>버튼</NewBtn>
+
         <div className="row">
           <div className="col-md-6">
-            <img src={res.src} width="100%" />
+            <img src={res.src} width="100%" alt={res.title} />
           </div>
           <div className="col-md-6">
             <h4 className="pt-5">{res.title}</h4>
@@ -20,16 +35,17 @@ function Detail(props) {
             <button className="btn btn-danger">주문하기</button>
           </div>
         </div>
+
       </div>
     )
-  } else {
-    return (
-      <div className="container">
-        <div className="row">
-          <p>올바르지 않은 페이지입니다.</p>
-        </div>
-      </div>
-      )
   }
+  return (
+
+    <div className="container">
+      <p>잘못된 페이지입니다.</p>
+    </div>
+  )
+
+
 }
 export default Detail;
