@@ -21,6 +21,12 @@ import { useParams } from "react-router-dom";
 
 function Detail(props) {
 
+  let { id } = useParams();
+  let res = props.shoes.find(shoe => shoe.id == id)
+  let [count, setCount] = useState(0);
+  let [event, setEvent] = useState(true);
+  let [quant, setQuant] = useState(0);
+ 
   useEffect(() => { // mount, updata 시 실행 
     // 디버깅을 위해 두 번정도 실행된다.
     // 이를 방지하려면 index.js에 가서 <React.StrictMode> 제거
@@ -37,25 +43,28 @@ function Detail(props) {
     // 왜 Effect 라는 이름인가?
     // Side Effect : 함수의 핵심기능과 상관없는 부가기능
     // 한마디로 useEffect는 side effect를 보관하는 장소
-    setTimeout(() => {
-      document.querySelector('.alert').style.opacity = '0'
-    }, 2000);
-  })
-
-
-  
-  let [count, setCount] = useState(0);
-  let { id } = useParams();
-  let res = props.shoes.find(shoe => shoe.id == id)
+    // setTimeout(() => {
+    //   setAlert(false);
+    // }, 2000);
+    
+    if (isNaN(quant)) {
+      alert('그러지마세요!')
+      setQuant(0);
+    } 
+  }, [quant])
 
   if (res) {
 
     return (
       <div className="container">
 
-        <div className="alert alert-warning">
-          2초 이내 구매 시 할인
-        </div>
+        {
+          event === true
+            ? <div className="alert alert-warning">
+              2초 이내 구매 시 할인
+            </div>
+            : null
+        }
 
         {/* <YellowBtn bg="blue">버튼</YellowBtn>
         <YellowBtn bg="orange">버튼</YellowBtn>
@@ -69,6 +78,10 @@ function Detail(props) {
             <h4 className="pt-5">{res.title}</h4>
             <p>{res.content}</p>
             <p>{res.price}원</p>
+            <input type="text" className="p-1 mx-2" onChange={(e) => {
+              let val = e.target.value;
+              setQuant(val);
+            }} value={quant} />
             <button className="btn btn-danger">주문하기</button>
           </div>
         </div>
