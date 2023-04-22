@@ -1,28 +1,65 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components"
 
-let YellowBtn = styled.button`
-  background: ${props => props.bg};
-  color: ${props => props.bg == 'blue' ? 'white' : 'black'};
-  padding: 10px;
-`
-let NewBtn = styled(YellowBtn)`
-  border-radius: 30px;
-`
+// ----------------------------------------------------
+// import styled from "styled-components"
+
+// let YellowBtn = styled.button`
+//   background: ${props => props.bg};
+//   color: ${props => props.bg == 'blue' ? 'white' : 'black'};
+//   padding: 10px;
+// `
+// let NewBtn = styled(YellowBtn)`
+//   border-radius: 30px;
+// `
+// ----------------------------------------------------
+// class DEtail2 extends React.Component {
+//   componentDidMount() { }
+//   componentDidUpdate() { }
+//   componentDidUpdate() { }
+// }
 
 function Detail(props) {
 
+  useEffect(() => { // mount, updata 시 실행 
+    // 디버깅을 위해 두 번정도 실행된다.
+    // 이를 방지하려면 index.js에 가서 <React.StrictMode> 제거
+    // html 렌더링 완료 후 실행이 된다.
+    // for (let i = 0; i < 10000; i++){
+    //   console.log(1);
+    // }
+
+    // 언제 사용하는가?
+    // 1. 어려운 연산
+    // 2. 서버에서 데이터 가져오는 작업
+    // 3. 타이머
+
+    // 왜 Effect 라는 이름인가?
+    // Side Effect : 함수의 핵심기능과 상관없는 부가기능
+    // 한마디로 useEffect는 side effect를 보관하는 장소
+    setTimeout(() => {
+      document.querySelector('.alert').style.opacity = '0'
+    }, 2000);
+  })
+
+
+  
+  let [count, setCount] = useState(0);
   let { id } = useParams();
   let res = props.shoes.find(shoe => shoe.id == id)
-  
+
   if (res) {
 
     return (
       <div className="container">
 
-        <YellowBtn bg="blue">버튼</YellowBtn>
+        <div className="alert alert-warning">
+          2초 이내 구매 시 할인
+        </div>
+
+        {/* <YellowBtn bg="blue">버튼</YellowBtn>
         <YellowBtn bg="orange">버튼</YellowBtn>
-        <NewBtn bg='green'>버튼</NewBtn>
+        <NewBtn bg='green'>버튼</NewBtn> */}
 
         <div className="row">
           <div className="col-md-6">
