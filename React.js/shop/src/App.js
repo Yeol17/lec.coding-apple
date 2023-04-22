@@ -1,15 +1,75 @@
-import { useState } from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Navbar, Container, Nav, Button, } from 'react-bootstrap';
 import './App.css';
 import bg from './images/bg.png';
 import data from './data';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import Detail from './routes/Detail'
+import axios from 'axios';
+import styled from 'styled-components'
+
+let BgWrap = styled.div`
+  background: rgba(0,0,0, .3);
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center
+`
+let Loading = styled.div`
+  width: 300px;
+  height: 300px;
+  background: #f1f1f1;
+  border-radius: 8%;
+  font-size: 18px
+  line-height: 1.4rem;
+  positoin: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700
+`;
+
+function Loader() {
+  return (
+    <BgWrap>
+      <Loading>불러오는중...</Loading>
+    </BgWrap>
+  )
+}
 
 function App() {
 
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
+  let [reqCnt, setReqCnt] = useState(1);
+  let [loadingStat, setLoadingStat] = useState(false);
+
+  function prodReq() {
+    setLoadingStat(true)
+    setReqCnt(reqCnt += 1);
+    axios
+      .get(`https://codingapple1.github.io/shop/data${reqCnt}.json`)
+      .then((res) => {
+        // let copy = [...shoes, ...res.data];
+        let copy = shoes.concat(res.data)
+        setShoes(copy);
+      }).catch((res) => {
+        console.log('실패함.');
+      }).then(() => {
+        setLoadingStat(false)
+      })
+  }
+  
+  useEffect(() => {
+    if(loadingStat) {
+      setLoadingStat(true)
+    }
+  }, [loadingStat])
 
   return (
     <div className="App">
@@ -44,12 +104,22 @@ function App() {
               <div className="row prods mx-auto">
                 {shoes.map((shoe) => {
                   return (
-                    <Card shoe={shoe} key={shoe.id} />
+                    <Card shoe={shoe} key={`pId` + shoe.id} />
                   )
                 })}
               </div>
             </div>
+
+
+            {
+
+              reqCnt < 3
+                ? <Button variant="dark" className="mt-4" onClick={prodReq}>더보기</Button>
+                : null
+            }
+
           </>
+
         } />
 
         <Route path='/detail/:id' element={<Detail shoes={shoes} />} />
@@ -67,6 +137,10 @@ function App() {
         <Route path='*' element={<div>없는 페이지에요</div>} />
       </Routes>
 
+      {
+        loadingStat ? <Loader />
+          : null
+      }
 
     </div>
   )
