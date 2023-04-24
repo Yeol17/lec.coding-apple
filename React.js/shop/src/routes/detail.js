@@ -24,18 +24,22 @@ function Detail(props) {
 
   let { id } = useParams();
   let res = props.shoes.find(shoe => shoe.id == id)
-  let [count, setCount] = useState(0);
+
   let [event, setEvent] = useState(true);
   let [quant, setQuant] = useState(0);
-
   let [tab, setTab] = useState(0);
 
-  function 탭변경(status) {
-    setTab(status)
-  }
-  useEffect(() => {
+  let [isDetail, setDetail] = useState('');
 
-  }) 
+  useEffect(() => {
+    setDetail('onload')
+    let b = setTimeout(() => {
+    }, 100)
+    return () => {
+      clearTimeout(b);
+      setDetail('');
+    }
+  }, [])
 
 
   // useEffect(() => { // mount, updata 시 실행 
@@ -67,7 +71,7 @@ function Detail(props) {
   if (res) {
 
     return (
-      <div className="container">
+      <div className={"container start " + isDetail}>
 
         {
           event === true
@@ -130,8 +134,8 @@ function Detail(props) {
 
 }
 
-function TabContents(props) {
-// function TabContents({ tab }) {
+// function TabContents(props) {
+function TabContents({ tab }) {
   // if (props.tab == 0) {
   //   return <div>내용0</div>
   // }
@@ -141,8 +145,22 @@ function TabContents(props) {
   // else if (props.tab == 2) {
   //   return <div>내용2</div>
   // }
-  return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][props.tab]
-//   return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]
+  let [fade, setFade] = useState('')
+
+  useEffect(() => {
+    let a = setTimeout(() => {
+      setFade('end')
+    }, 100)
+    return () => {
+      clearTimeout(a)
+      setFade('')
+    }
+  }, [tab])
+
+  return (<div className={`start ${fade}`}>
+    {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]}
+  </div>)
+  //   return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][props.tab]
 }
 
 export default Detail;

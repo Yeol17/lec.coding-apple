@@ -49,6 +49,8 @@ function App() {
   let [reqCnt, setReqCnt] = useState(1);
   let [loadingStat, setLoadingStat] = useState(false);
 
+  let [isDetail, setDetail] = useState('');
+console.log(isDetail);
   function prodReq() {
     setLoadingStat(true)
     setReqCnt(reqCnt += 1);
@@ -64,11 +66,12 @@ function App() {
         setLoadingStat(false)
       })
   }
-  
+
   useEffect(() => {
-    if(loadingStat) {
+    if (loadingStat) {
       setLoadingStat(true)
     }
+
   }, [loadingStat])
 
   return (
@@ -122,7 +125,7 @@ function App() {
 
         } />
 
-        <Route path='/detail/:id' element={<Detail shoes={shoes} />} />
+        <Route path='/detail/:id' element={<Detail shoes={shoes}/>} />
 
         <Route path='/event' element={<Event />}>
           <Route path='one' element={<div>첫 주문시 양배추즙 서비스</div>}></Route>
