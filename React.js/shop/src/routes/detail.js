@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
-
+import { Context1 } from './../App.js'
 // ----------------------------------------------------
 // import styled from "styled-components"
 
@@ -21,6 +21,8 @@ import Nav from 'react-bootstrap/Nav';
 // }
 
 function Detail(props) {
+
+  let { 재고 } = useContext(Context1);
 
   let { id } = useParams();
   let res = props.shoes.find(shoe => shoe.id == id)
@@ -120,7 +122,7 @@ function Detail(props) {
                 : null
         } */}
 
-        <TabContents tab={tab} />
+        <TabContents tab={tab} shoes={res} />
 
       </div>
     )
@@ -146,7 +148,7 @@ function TabContents({ tab }) {
   //   return <div>내용2</div>
   // }
   let [fade, setFade] = useState('')
-
+  let { 재고 } = useContext(Context1)
   useEffect(() => {
     let a = setTimeout(() => {
       setFade('end')
@@ -158,7 +160,7 @@ function TabContents({ tab }) {
   }, [tab])
 
   return (<div className={`start ${fade}`}>
-    {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]}
+    {[<div>{ }</div>, <div>{}</div>, <div>내용2</div>][tab]}
   </div>)
   //   return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][props.tab]
 }

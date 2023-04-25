@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { Navbar, Container, Nav, Button, } from 'react-bootstrap';
 import './App.css';
 import bg from './images/bg.png';
@@ -7,6 +7,8 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import Detail from './routes/Detail'
 import axios from 'axios';
 import styled from 'styled-components'
+
+export let Context1 = createContext();
 
 let BgWrap = styled.div`
   background: rgba(0,0,0, .3);
@@ -42,15 +44,16 @@ function Loader() {
   )
 }
 
+
+
 function App() {
 
   let [shoes, setShoes] = useState(data);
+  let [재고] = useState([10, 11, 12]);
   let navigate = useNavigate();
   let [reqCnt, setReqCnt] = useState(1);
   let [loadingStat, setLoadingStat] = useState(false);
 
-  let [isDetail, setDetail] = useState('');
-console.log(isDetail);
   function prodReq() {
     setLoadingStat(true)
     setReqCnt(reqCnt += 1);
@@ -125,7 +128,11 @@ console.log(isDetail);
 
         } />
 
-        <Route path='/detail/:id' element={<Detail shoes={shoes}/>} />
+        <Route path='/detail/:id' element={
+          <Context1.Provider value={{ 재고 }}>
+            <Detail shoes={shoes} />
+          </Context1.Provider>
+        } />
 
         <Route path='/event' element={<Event />}>
           <Route path='one' element={<div>첫 주문시 양배추즙 서비스</div>}></Route>
