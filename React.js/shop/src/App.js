@@ -1,10 +1,14 @@
 import { createContext, useEffect, useState } from 'react';
 import { Navbar, Container, Nav, Button, } from 'react-bootstrap';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+
 import './App.css';
+
 import bg from './images/bg.png';
 import data from './data';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
-import Detail from './routes/Detail'
+import Detail from './routes/Detail';
+import Cart from './routes/Cart';
+
 import axios from 'axios';
 import styled from 'styled-components'
 
@@ -82,7 +86,7 @@ function App() {
 
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
               alt="logos"
               src={`${process.env.PUBLIC_URL}/logo192.png`}
@@ -145,6 +149,8 @@ function App() {
         </Route>
 
         <Route path='*' element={<div>없는 페이지에요</div>} />
+
+        <Route path="/cart" element={<Cart />} />
       </Routes>
 
       {
