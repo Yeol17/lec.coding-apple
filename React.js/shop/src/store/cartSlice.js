@@ -12,11 +12,13 @@ let cart = createSlice({
       res.count += 1
     },
     addCart(state, action) {
-      let res = state.find(el => el.id === action.payload);
+      let post = action.payload;
+      let res = state.find(el => el.id === post.id);
+
       if (res) {
         res.count += 1
       } else {
-        state.push({ id: 1, name: 'Red Knit', count: 1 })
+        state.push({ id: post.id, name: post.name, count: 1 })
       }
     }
   }

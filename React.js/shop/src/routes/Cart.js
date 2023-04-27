@@ -8,7 +8,6 @@ function Cart() {
   let state = useSelector((state) => state);
   let dispatch = useDispatch();
 
-
   return (
     <div>
       <h6>{state.user.name}의 장바구니 {state.user.age}</h6>

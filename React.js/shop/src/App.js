@@ -101,6 +101,7 @@ function App() {
             <Nav.Link href="/new">New</Nav.Link>
             <Nav.Link onClick={() => { navigate('/detail') }}>Detail</Nav.Link>
             <Link to='/detail'>상품</Link>
+            <Nav.Link href="/cart">Cart</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

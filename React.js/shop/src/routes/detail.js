@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Routes, Route } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
 import { Context1 } from './../App.js'
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from './../store/cartSlice.js'
+import Cart from './Cart.js'
 // ----------------------------------------------------
 // import styled from "styled-components"
 
@@ -104,7 +105,7 @@ function Detail(props) {
               let val = e.target.value;
               setQuant(val);
             }} value={quant} />
-            <button className="btn btn-danger" onClick={() => { dispatch(addCart(res.id)) }}>주문하기</button>
+            <button className="btn btn-danger" onClick={() => { dispatch(addCart({ id: res.id, name: res.title, content: res.content })) }}>주문하기</button>
           </div>
         </div>
 
@@ -129,6 +130,9 @@ function Detail(props) {
 
         <TabContents tab={tab} shoes={res} />
 
+        {/* <Routes>
+          <Route path="/cart" element={<Cart />} />
+        </Routes> */}
       </div>
     )
   }
