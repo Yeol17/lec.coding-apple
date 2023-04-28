@@ -48,8 +48,6 @@ function Loader() {
   )
 }
 
-
-
 function App() {
 
   let [shoes, setShoes] = useState(data);
@@ -57,6 +55,8 @@ function App() {
   let navigate = useNavigate();
   let [reqCnt, setReqCnt] = useState(1);
   let [loadingStat, setLoadingStat] = useState(false);
+  let [watched, setWatched] = useState([]);
+  let [recentData, setRecent] = useState([]);
 
   function prodReq() {
     setLoadingStat(true)
@@ -75,15 +75,20 @@ function App() {
   }
 
   useEffect(() => {
-    if (loadingStat) {
-      setLoadingStat(true)
-    }
-
-  }, [loadingStat])
+    // if (loadingStat) {
+    //   setLoadingStat(true)
+    // }
+    localStorage.setItem('watched', JSON.stringify(watched));
+    let data = JSON.parse(localStorage.getItem('watched'));
+    let tmp = new Set(data);
+    console.log(tmp);
+    setRecent(tmp)
+  }, [watched])
 
   return (
     <div className="App">
 
+    <button onClick={() => {console.log(recentData)}}>버튼</button>
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="/">
@@ -106,16 +111,24 @@ function App() {
         </Container>
       </Navbar>
 
+      <Recent shoes={shoes} recentData={recentData} />
+
       <Routes>
         <Route path='/' element={
           <>
             <div className="main-bg" style={{ background: `url(${bg}) center/cover` }}></div>
             <div className="container">
               <h3>상품목록</h3>
-              <div className="row prods mx-auto">
+              <div className="row prods mx-auto" >
                 {shoes.map((shoe) => {
                   return (
-                    <Card shoe={shoe} key={`pId` + shoe.id} />
+                    <Link to={'/detail/' + shoe.id} className="col-md-4 item" key={`pId` + shoe.id} onClick={() => {
+                      let copy = [...watched];
+                      copy.unshift(shoe.id);
+                      setWatched(copy);
+                    }}>
+                      <Card shoe={shoe} />
+                    </Link>
                   )
                 })}
               </div>
@@ -183,10 +196,30 @@ function About() {
 
 function Card(props) {
   return (
-    <div className="col-md-4 item">
+    <div>
       <img src={props.shoe.src} width="80%" alt={`신발이미지${props.shoe.id}`} />
       <h4>{props.shoe.title}</h4>
       <p>{props.shoe.content}</p>
+    </div>
+  )
+}
+
+function Recent(props) {
+  let idx = Array.from(props.recentData);
+  console.log(idx);
+  return (
+    <div className="recent-list">
+      <h6>최근 본 상품</h6>
+      <ul>
+        <li className="itm">
+          {
+            idx[0] > -1
+              ? <img src={props.shoes[idx[0]].src} alt='' />
+              : <p>비어있음</p>
+          }
+        </li>
+      </ul>
+      <div className="nextIcn">▼</div>
     </div>
   )
 }

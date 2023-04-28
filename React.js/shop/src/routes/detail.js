@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import { Context1 } from './../App.js'
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from './../store/cartSlice.js'
-import Cart from './Cart.js'
+// import Cart from './Cart.js'
 // ----------------------------------------------------
 // import styled from "styled-components"
 
@@ -38,7 +38,6 @@ function Detail(props) {
   let state = useSelector(state => state.cart);
   let dispatch = useDispatch();
 
-  console.log(state);
   useEffect(() => {
     setDetail('onload')
     let b = setTimeout(() => {
