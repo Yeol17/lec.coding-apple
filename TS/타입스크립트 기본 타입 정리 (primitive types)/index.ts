@@ -1,7 +1,7 @@
 let 이름: string = 'kim';
 let 나이: number = 50;
 let 결혼했니: boolean = true;
-let 성별: undefined = null;
+// let 성별: undefined = null;
 
 // 문자만 담긴 배열만 가능
 let 회원들: string[] = ['kim', 'park'];

@@ -1,7 +1,7 @@
 var 이름 = 'kim';
 var 나이 = 50;
 var 결혼했니 = true;
-var 성별 = null;
+// let 성별: undefined = null;
 // 문자만 담긴 배열만 가능
 var 회원들 = ['kim', 'park'];
 var 회원 = { member1: 'kim', member2: 'park' };
