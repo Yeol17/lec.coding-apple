@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
-import { useParams, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
-import { Context1 } from './../App.js'
-import { useDispatch, useSelector } from "react-redux";
+// import { Context1 } from './../App.js'
+import { useDispatch } from "react-redux";
 import { addCart } from './../store/cartSlice.js'
 // import Cart from './Cart.js'
 // ----------------------------------------------------
@@ -30,22 +30,28 @@ function Detail(props) {
   let { id } = useParams();
   let res = props.shoes.find(shoe => shoe.id == id)
 
-  let [event, setEvent] = useState(true);
+  let [event] = useState(true);
   let [quant, setQuant] = useState(0);
   let [tab, setTab] = useState(0);
 
-  let [isDetail, setDetail] = useState('');
-  let state = useSelector(state => state.cart);
+  let [isDetail] = useState('');
+  // let state = useSelector(state => state.cart);
   let dispatch = useDispatch();
 
   useEffect(() => {
-    setDetail('onload')
-    let b = setTimeout(() => {
-    }, 100)
-    return () => {
-      clearTimeout(b);
-      setDetail('');
-    }
+    let recent = localStorage.getItem('watched');
+    recent = JSON.parse(recent);
+    recent.push(res.id);
+    localStorage.setItem('watched', JSON.stringify(recent))
+
+    // setDetail('onload')
+    // let b = setTimeout(() => {
+    // }, 100)
+    // return () => {
+    //   clearTimeout(b);
+    //   setDetail('');
+    // }
+
   }, [])
 
 
@@ -156,7 +162,7 @@ function TabContents({ tab }) {
   //   return <div>내용2</div>
   // }
   let [fade, setFade] = useState('')
-  let { 재고 } = useContext(Context1)
+  // let { 재고 } = useContext(Context1)
   useEffect(() => {
     let a = setTimeout(() => {
       setFade('end')

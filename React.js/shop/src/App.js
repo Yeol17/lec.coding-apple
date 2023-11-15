@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import { Navbar, Container, Nav, Button, } from 'react-bootstrap';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
+
 import './App.css';
 
 import bg from './images/bg.png';
@@ -56,7 +57,18 @@ function App() {
   let [reqCnt, setReqCnt] = useState(1);
   let [loadingStat, setLoadingStat] = useState(false);
   let [watched, setWatched] = useState([]);
-  let [recentData, setRecent] = useState([]);
+
+  useEffect(() => {
+    // if (loadingStat) {
+    //   setLoadingStat(true)
+    // }
+    let data = JSON.parse(localStorage.getItem('watched'));
+    if (!data) {
+      localStorage.setItem('watched', JSON.stringify(watched));
+    } else {
+      setWatched(data)
+    }
+  })
 
   function prodReq() {
     setLoadingStat(true)
@@ -74,21 +86,9 @@ function App() {
       })
   }
 
-  useEffect(() => {
-    // if (loadingStat) {
-    //   setLoadingStat(true)
-    // }
-    localStorage.setItem('watched', JSON.stringify(watched));
-    let data = JSON.parse(localStorage.getItem('watched'));
-    let tmp = new Set(data);
-    console.log(tmp);
-    setRecent(tmp)
-  }, [watched])
 
   return (
     <div className="App">
-
-    <button onClick={() => {console.log(recentData)}}>버튼</button>
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="/">
@@ -111,7 +111,7 @@ function App() {
         </Container>
       </Navbar>
 
-      <Recent shoes={shoes} recentData={recentData} />
+      <Recent shoes={shoes} watched={watched} />
 
       <Routes>
         <Route path='/' element={
@@ -122,11 +122,7 @@ function App() {
               <div className="row prods mx-auto" >
                 {shoes.map((shoe) => {
                   return (
-                    <Link to={'/detail/' + shoe.id} className="col-md-4 item" key={`pId` + shoe.id} onClick={() => {
-                      let copy = [...watched];
-                      copy.unshift(shoe.id);
-                      setWatched(copy);
-                    }}>
+                    <Link to={'/detail/' + shoe.id} className="col-md-4 item" key={`pId` + shoe.id}>
                       <Card shoe={shoe} />
                     </Link>
                   )
@@ -136,7 +132,6 @@ function App() {
 
 
             {
-
               reqCnt < 3
                 ? <Button variant="dark" className="mt-4" onClick={prodReq}>더보기</Button>
                 : null
@@ -204,17 +199,17 @@ function Card(props) {
   )
 }
 
+
 function Recent(props) {
-  let idx = Array.from(props.recentData);
-  console.log(idx);
+
   return (
     <div className="recent-list">
       <h6>최근 본 상품</h6>
       <ul>
         <li className="itm">
           {
-            idx[0] > -1
-              ? <img src={props.shoes[idx[0]].src} alt='' />
+            props.watched.length > 0
+              ? (<img src={props.shoes[props.watched[props.watched.length - 1]].src} alt='' />)
               : <p>비어있음</p>
           }
         </li>
@@ -223,5 +218,7 @@ function Recent(props) {
     </div>
   )
 }
+
+
 
 export default App;

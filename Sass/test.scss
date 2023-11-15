@@ -1,0 +1,89 @@
+@use 'reset';
+
+$main-color: #2a4cb2;
+.background {
+  background-color: $main-color;
+}
+
+
+// nesting
+.main-bg {
+  color: $main-color;
+
+  h4 {
+    font-size: 14px;
+  }
+}
+
+// @extend
+%btn {
+  //단독으로 컴파일 되지 않는다
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+}
+
+.btn-green {
+  @extend %btn;
+  color: green;
+
+}
+
+.btn-red {
+  @extend %btn;
+  color: red;
+
+}
+
+.btn-green {
+  @extend %btn;
+  color: blue;
+
+}
+
+%div {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+}
+
+.red {
+  @extend %div;
+  background-color: red;
+}
+
+.blue {
+  @extend %div;
+  background-color: blue;
+}
+
+.green {
+  @extend %div;
+  background-color: green;
+}
+
+// ------------------------------------------------------------
+// @mixin 작명($arg1, $arg2, ...){
+//    attr: arg1;
+//    #{ arg2 } : val
+// }
+
+//  @include 작명($arg1, #arg2)
+
+@mixin title($size, $변수) {
+  font-size: $size;
+  #{ $변수 }: -1px;
+}
+
+h2 {
+  @include title(30px, letter-spacing)
+}
+
+h3 {
+  @include title(20px, margin)
+}
+
+h4 {
+  @include title(10px, padding)
+}
+

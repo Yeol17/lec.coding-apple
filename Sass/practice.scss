@@ -1,0 +1,60 @@
+@import 'reset';
+
+.box {
+  width: 100px;
+  height: 50px;
+  background-color: red;
+  margin: {
+    top: 10px;
+    bottom: 20px;
+  };
+}
+
+
+p {
+  margin: 0;
+}
+li {
+  width: 400px;
+  height: 50px;
+  border: 1px solid #c1c1c1;
+  list-style: none;
+  line-height: 50px;
+  padding: 0 20px;
+  border-bottom: 0;
+
+  &:last-child {border-bottom: 1px solid #c1c1c1};
+
+  &.active {
+    color: #fff;
+    background-color: #2059f5;
+  }
+}
+// --------------------------------------------
+
+%alert {
+  width: 600px;
+  height: 30px;
+  line-height: 30px;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0
+}
+
+@mixin box($bg, $font) {
+  background-color: $bg;
+  color: $font;
+}
+
+.welldone {
+  @extend %alert;
+  @include box(rgb(196, 250, 232), rgb(10, 123, 86));
+}
+.headup {
+  @extend %alert;
+  @include box(#9fd1f8, #0b5d9b);
+}
+.warning {
+  @extend %alert;
+  @include box(antiquewhite, rgb(198, 121, 21));
+}

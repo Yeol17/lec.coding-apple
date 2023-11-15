@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  width: 100px;
+  height: 50px;
+  background-color: red;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+p {
+  margin: 0;
+}
+
+li {
+  width: 400px;
+  height: 50px;
+  border: 1px solid #c1c1c1;
+  list-style: none;
+  line-height: 50px;
+  padding: 0 20px;
+  border-bottom: 0;
+}
+li:last-child {
+  border-bottom: 1px solid #c1c1c1;
+}
+li.active {
+  color: #fff;
+  background-color: #2059f5;
+}
+
+.warning, .headup, .welldone {
+  width: 600px;
+  height: 30px;
+  line-height: 30px;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.welldone {
+  background-color: rgb(196, 250, 232);
+  color: rgb(10, 123, 86);
+}
+
+.headup {
+  background-color: #9fd1f8;
+  color: #0b5d9b;
+}
+
+.warning {
+  background-color: antiquewhite;
+  color: rgb(198, 121, 21);
+}/*# sourceMappingURL=practice.css.map */
