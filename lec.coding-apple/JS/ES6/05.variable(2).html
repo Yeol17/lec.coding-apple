@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.variable(2)</title>
+</head>
+
+<body>
+
+  <script>
+    // 변수의 호이스팅 현상
+
+    console.log(나이); // undefined
+    // console.log(나이1);
+    
+    var 나이 = 30;
+    let 나이1 = 55;
+    
+    console.log(나이); // 30
+    console.log(나이1); // 30
+    
+    // 전역변수, 모든 곳에서 쓸 수 있는 변수
+    function 함수() {
+      var 이름 = 'kim';
+      console.log(나이);
+    }
+
+    함수(); // 20
+
+    window.이름 = '김';
+
+    // Q. 
+    if (true) {
+      let a = 1;
+      var b = 2;
+      if (true) {
+        let b = 3;
+      }
+      console.log(b) // 2
+    }
+
+  </script>
+
+</body>
+
+</html>

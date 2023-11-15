@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>01. this keyword(1)</title>
+</head>
+
+<body>
+  <script>
+    'use strict';
+
+    // x = 300;
+    // let arguments = 'args'
+    console.log(this);
+
+    function 함수() {
+      console.log(this);
+    }
+
+    var 오브젝트 = {
+      data: {
+        함수: () => {
+          console.log(this);
+        }
+      },
+    }
+
+    let 화살표 = () => { console.log(this) };
+
+    함수();
+    화살표();
+    오브젝트.data.함수();
+  </script>
+
+</body>
+
+</html>

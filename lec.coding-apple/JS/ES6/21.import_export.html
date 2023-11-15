@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script type="module">
+    // import 가져올거 from '경로'
+
+    // import {a, b} from '/library.js'
+    // import tmp from '/library.js' // exprt default 의 내용이 담긴다.
+    // import 작명,{a, b} from '/library.js' // 한꺼번에 import 할 수 있다.
+    // 이 때, default 값이 맨 앞에 와야한다.
+
+    // console.log(b);
+    // console.log(tmp); 
+
+
+    // import {a as a별명} from '/library.js'
+    // 가져온 a를 새로벡 명명해 줄 수 있다.
+    // console.log(a); 에러
+    // console.log(a별명);
+
+    // (5) * 로 모든걸 다 import 할 수 있다.
+    // import * as 변수들명 from '경로'
+    import * as 별명 from '/library.js'
+    console.log(별명.a);
+
+    // import c, * as 별명 from '/library.js'
+
+
+
+  </script>
+</body>
+
+</html>

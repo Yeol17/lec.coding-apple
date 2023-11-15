@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    function 더하기1(a, b) {
+      console.log(a + b);
+    }
+
+    더하기1(1); // NaN
+  
+    // JS는 다른 엄격한 언어와 달리 
+    // 함수의 파라미터가 부족해도 에러가 나지 않는다.
+
+    // default 파라미터
+    function 더하기2(a, b = 10) { // b에 파라미터가 없을 때, b = 10
+     // b = a * 2 와 같은 연산식도 올 수 있다. ㄴ
+      console.log(a + b);
+    }
+
+    더하기2(1); // 11
+
+    function 임시함수() {
+      return 10
+    }
+    임시함수(); // 10
+
+    function 더하기3(a, b = 임시함수()) {
+      console.log(a + b);
+    }
+    더하기3(1); // 11
+
+    // 함수의 arguments
+
+    function 함수(a, b, c) {
+      for (let i = 0; i < arguments.length; i++) {
+        console.log(arguments[i]);
+      }
+    }
+    함수(1, 2, 3);
+  </script>
+</body>
+
+</html>

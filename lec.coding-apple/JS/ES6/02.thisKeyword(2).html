@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>01. this keyword(1)</title>
+</head>
+
+<body>
+  <button>버튼</button>
+
+  <script>
+
+    function 기계() {
+      this.이름 = 'kim'
+    }
+
+    var 오브젝트 = new 기계();
+
+    console.log(오브젝트);
+    // 기계 {이름: 'kim'}
+
+    document.querySelector('button').addEventListener('click', function (e) {
+      // console.log(this); // <button>버튼</button>
+      // console.log(e.currentTarget); // <button>버튼</button>
+      var 어레이 = [1, 2, 3];
+      어레이.forEach(function (a) {
+        console.log(this);
+      })
+    })
+
+    var 오브젝트2 = {
+      이름들: ['김', '이', '박'],
+      함수1: function () {
+        console.log(this);
+        this.이름들.forEach(function() {
+          console.log(this);
+        })
+      },
+      함수2: function () {
+        console.log(this);
+        this.이름들.forEach(() => {
+          console.log(this);
+        })
+      }
+    }
+    오브젝트2.함수1();
+    오브젝트2.함수2();
+
+  </script>
+
+</body>
+
+</html>

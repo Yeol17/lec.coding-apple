@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <style>
+    .hide {
+      display: none
+    }
+
+    input:invalid {
+      border: 3px solid red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+
+      <!-- <div class="col-sm-4">
+        <img src="https://via.placeholder.com/600" class="w-100">
+        <h5>Card title</h5>
+        <p>가격 : 70000</p>
+      </div> -->
+
+    </div>
+  </div>
+  <div class="container my-3">
+    <button class="btn btn-primary" id="origin">기본순</button>
+    <button class="btn btn-success" id="price">가격순</button>
+    <button class="btn btn-secondary" id="desc">다나가순</button>
+    <button class="btn btn-warning" id="under">6만원이하</button>
+    <input type="text" pattern="[0-9]+" id="priceRange"> 미만<button class="btn btn-warning mx-2" id="range">검색</button>
+  </div>
+  <div class="container">
+    <button class="btn btn-danger" id="more">더보기</button>
+  </div>
+
+  <script>
+
+    // 데이터 바인딩
+    var products = [
+      { id: 0, price: 70000, title: 'Blossom Dress' },
+      { id: 1, price: 50000, title: 'Springfield Shirt' },
+      { id: 2, price: 60000, title: 'Black Monastery' }
+    ];
+
+    let prodCopy = [...products];
+
+    function cardInit(prods) {
+      $row.html('')
+      createCard(prods)
+    }
+
+    $('#origin').click(() => {
+      cardInit(products);
+    });
+    $('#price').click(() => {
+      prodCopy.sort((a, b) => a.price - b.price)
+      cardInit(prodCopy);
+    })
+    $('#desc').click(() => {
+      prodCopy.sort((a, b) => {
+        if (a.title < b.title) return 1;
+        else return -1;
+      })
+      cardInit(prodCopy);
+    });
+    $('#under').click(() => {
+      let tmp = prodCopy.filter(a => a.price < 60000)
+      cardInit(tmp);
+    })
+    $('#range').click(() => {
+
+      let res = prodCopy.filter(a => {
+        return a.price < $('#priceRange').val()
+      })
+      cardInit(res);
+    })
+    // var arr = [5, 7, 3, 6, 11, 2];
+    // var arr2 = ['a', 'c', 'b'];
+    // arr.sort((a, b) => a - b);
+    // arr2.sort((a, b) => {
+    //   if (a < b) { 
+    //     return 1
+    //   } else { 
+    //     return -1
+    //   }
+    // })
+    // console.log(arr);
+    // console.log(arr2);
+
+    let $row = $('.row');
+    let $more = $('#more');
+    let cnt = 1;
+    let cart = [];
+
+    function createCard(data) {
+      data.forEach(a => {
+        let tmp =
+          `<div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100">
+            <h5>${a.title}</h5>
+            <p>가격 : ${a.price}</p>
+            <button class="buy">구매</button>
+          </div>`;
+        $row.append(tmp);
+      })
+    }
+
+    //localStorage에 저장하기
+    // 카드하단 구매버튼추가하고 
+    // 버튼을 누르면 누른 상품의 이름을 localStorage에 저장
+
+    createCard(products);
+
+    // let cart = [
+    //   {title: a,quant:1},
+    //   {title: b,quant:2},
+    //   {title: c,quant:3},
+    // ]
+    $('.buy').click((e) => {
+      let tit = $(e.target).siblings('h5').text();
+      let cart = JSON.parse(localStorage.getItem('cart'));
+
+      if ( cart != null) {
+        let search = cart.find(el => el.title === tit);
+        if(search){
+          search.quant++
+        } else {
+          cart.push({title: tit, quant: 1});
+        }
+        cart = JSON.stringify(cart);
+        localStorage.setItem('cart', cart);
+      } else {
+        localStorage.setItem('cart', JSON.stringify([{title: tit,quant: 1}]));
+      }
+    })
+
+    // AJAX 요청
+    $more.click(() => {
+      $.get(`https://codingapple1.github.io/js/more${cnt}.json`)
+        .then(data => {
+          createCard(data);
+          cnt++;
+          if (cnt > 2) {
+            $more.addClass('hide');
+          }
+        }).catch(err => {
+          console.log(err);
+        })
+    })
+  </script>
+
+</body>
+
+</html>

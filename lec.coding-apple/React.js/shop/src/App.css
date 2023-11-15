@@ -1,0 +1,117 @@
+li {
+  list-style: none;
+}
+
+.recent-list {
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 110px;
+  height: 110px;
+  padding: 12px 4px;
+  position: fixed;
+  background: #fff;
+  right: 20px;
+  bottom: 5%;
+  box-shadow: 2px 4px 8px 0 rgba(186, 184, 180, 0.4);
+}
+
+.recent-list h6 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.recent-list .itm img {
+  width: 100%;
+  height: 100%;
+}
+
+.nextIcn {
+  font-size: 10px;
+  cursor: pointer
+}
+
+
+.start {
+  opacity: 0;
+}
+
+.onload {
+  opacity: 1;
+  transition: all .7s;
+}
+
+.end {
+  opacity: 1;
+  transition: opacity .5s;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #c1c1c1;
+  padding: .5rem
+}
+
+.main-bg {
+  height: 300px;
+  /* background: url('./images/bg.png') center/cover; */
+}
+
+.prods {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.prods .item {
+  width: 33.33%;
+  /* margin: 0 5px; */
+  flex-grow: 1;
+  box-sizing: border-box;
+  height: 100%;
+  text-decoration: none;
+  color: #333
+}
+
+.prods .item:hover {
+  box-shadow: 3px 3px 8px 2px rgba(0, 0, 0, 0.3);
+}
+
+.App {
+  text-align: center;
+  position: relative;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

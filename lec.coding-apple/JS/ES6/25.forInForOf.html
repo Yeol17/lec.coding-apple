@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // 반복문을 쓰는 이유
+    // 1. 코드 여러번 실행할 때
+    // 2. 자료를 꺼내 쓸 때
+    // for 반복문 
+    // foeEach() 반복문 (Array전용) 
+    // for in 반복문 (Object 전용)
+    // for of 반복문 (iterable 전용)
+
+    // class 부모 {
+    // }
+    // 부모.prototype.name = 'Park';
+
+    // let 오브젝트 = new 부모();
+
+    // let 오브젝트 = { name: 'Kim', age: 30 };
+    // Object.getOwnPropertyDescriptor(오브젝트, 'name');
+    // { value: 'Kim', writable: true, enumerable: true, configurable: true }
+    // configurable: true
+    // enumerable: true // 셀 수 있는가
+    // value: "Kim"
+    // writable: true
+    // [[Prototype]] :Object
+
+
+    // for (let key in 오브젝트) {
+    //   if (오브젝트.hasOwnProperty(key)){
+    //     console.log(오브젝트[key]);
+    //   }
+    // }
+
+    // 특징
+    // 1. enumerable 한 것만 반복
+    // 2. 부모의 prototype도 반복해 준다
+    // 3. Object 자료형에만 쓴다.
+
+    var arr = [1,2,3,4,5];
+
+    for (let data of '가나다라마바사') {  
+      console.log(data);
+    }
+
+    // Array, 문자, arguments, NodeList, Map, Set
+    // 특징 - iterable한 자료형에만 사용가능
+
+    arr[Symbol.iterator]();
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

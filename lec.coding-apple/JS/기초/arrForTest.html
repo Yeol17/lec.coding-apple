@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //Q1. Array에서 철수라는 자료를 찾고 싶습니다
+
+    var 출석부 = ['흥민', '영희', '철수', '재석'];
+    // function 이름찾기() {
+    //   코드
+    // }
+    function 이름찾기(이름) {
+      // if(출석부.includes(이름)){
+      //   return '있어요'
+      // }
+      let flag = () => {
+        출석부.forEach(a => {
+          if (a == 이름) return true
+        })
+      }
+
+      if (flag) return '있어요';
+    }
+
+    // Q2.갑자기 구구단을 콘솔창에 출력하고 싶습니다.
+
+    for (let i = 2; i <= 9; i++) {
+      for (let j = 1; j <= 9; j++) {
+        console.log(i * j)
+      }
+    }
+    //q3. Q. 평균점수 계산기 만들기
+    //기존 모의고사 성적들을 array 자료에 전부 담아 첫 파라미터로 입력하고 
+    // 이번 11월 모의고사 성적을 둘 째 파라미터로 입력하면
+    //11월 성적이 기존 성적들의 평균에 비해 얼마나 우수한지 결과
+
+    function 함수(arr, 점수) {
+      let 총 = 0;
+      for(let i = 0; i < arr.length; i++) {
+        총 += arr[i];
+      }
+      let 평균 = 총/arr.length
+      if (평균 < 점수){
+        console.log(`평균보다${점수 - 평균}점이 올랐네요`)
+      } else {
+        console.log(`평균보다 ${평균 - 점수}점이 떨어졌어요`)
+      }
+    }
+  </script>
+</body>
+
+</html>
