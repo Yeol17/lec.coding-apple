@@ -36,6 +36,6 @@ app.get("/news", (요청, 응답) => {
 
 app.get("/list", async (요청, 응답) => {
   let result = await db.collection("post").find().toArray();
-  응답.send("db에 있던 게시물");
+  응답.send(result[0].title);
   console.log(result);
 });
