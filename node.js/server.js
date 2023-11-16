@@ -24,7 +24,6 @@ new MongoClient(url)
     console.log(err);
   });
 
-
 // 사이트 메인페이지에 접속하면 텍스트 전송
 app.get("/", (요청, 응답) => {
   응답.send("반갑다");
@@ -32,5 +31,11 @@ app.get("/", (요청, 응답) => {
 
 app.get("/news", (요청, 응답) => {
   // 응답.sendFile(__dirname + "/index.html");
-  db.collection('post').insertOne({title: '어쩌구'})
+  // db.collection('post').insertOne({title: '어쩌구'})
+});
+
+app.get("/list", async (요청, 응답) => {
+  let result = await db.collection("post").find().toArray();
+  응답.send("db에 있던 게시물");
+  console.log(result);
 });
