@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/main.css">
+</head>
+
+<body class="grey-bg">
+  <%- include('nav.ejs') %>
+
+  <div class="white-bg">
+    <% for(let i=0; i < 글목록.length; i++) {%>
+      <div class="wrapper">
+        <a class="list-box" href="/detail/<%= 글목록[i]._id %>">
+          <h4><%=글목록[i].title%></h4>
+          <p><%=글목록[i].content%></p>
+        </a>
+        <div class="edit">
+          <a href="/edit/<%= 글목록[i]._id%>">수정</a>
+          <a href="/delete//<%= 글목록[i]._id%>">삭제</a>
+        </div>
+      </div>
+    <% }%>
+  </div>
+</body>
+
+</html>
